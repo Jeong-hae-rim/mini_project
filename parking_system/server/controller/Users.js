@@ -1,8 +1,8 @@
 const DBHandler = require('../models/DBHandler');
-const CustomerDAO = require('../models/CustomerDAO');
-const CustomerDTO = require('../models/CustomerDAO');
+const UsersDAO = require('../models/UsersDAO');
+const UsersDTO = require('../models/UsersDAO');
 
-class Customer {
+class Users {
 
     constructor() {
         this.db = new DBHandler();
@@ -11,8 +11,8 @@ class Customer {
     async addUser(userData) {
 
         const db = this.db;
-        const dao = new CustomerDAO();
-        const dto = new CustomerDTO();
+        const dao = new UsersDAO();
+        const dto = new UsersDTO();
         const { name, phone, car_number, service_end } = userData;
         
         // parameter validation 
@@ -33,13 +33,13 @@ class Customer {
         return 0;
     }
 
-    async checkUser(car_number) {
+    async checkUser(u_code) {
 
         const db = this.db;
         let query_result;
         let rns = 0;
 
-        let query = `SELECT * FROM register where car_number = '${car_number}'`;
+        let query = `SELECT * FROM users where U_Code = '${u_code}'`;
         
         query_result = await db.getData(query);
 
@@ -52,4 +52,4 @@ class Customer {
 
 }
 
-module.exports = Customer;
+module.exports = Users;

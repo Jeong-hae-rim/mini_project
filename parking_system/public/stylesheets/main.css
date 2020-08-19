@@ -1,0 +1,133 @@
+
+/* 전역 설정 */
+
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap');
+
+* {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+margin: 0;
+height: 100%;
+}
+
+/* 재사용 가능 모듈 */
+
+.btn {
+  width: 250px;
+  height: 50px;
+  margin-bottom:10px;
+  border : 1px solid rgb(251, 251, 251);
+  border-radius: 10px;
+  color : #fff;
+  font-family: 'Jua', sans-serif;
+  font-size: 20px;
+}
+
+.greenBtn {
+  background-color: rgb(26, 188, 156);
+}
+
+.greenBtn:hover, .greenBtn:active {
+  background-color: rgb(18, 124, 103);
+  transition: background-color 0.3s;
+}
+
+.blueBtn {
+  background-color: rgb(41, 128, 185);
+}
+
+.blueBtn:hover, .blueBtn:active {
+  background-color: rgb(26, 76, 109);
+  transition: background-color 0.3s;
+}
+
+.loginBtn {
+  width: 70px;
+  height: 30px;
+  margin-bottom:10px;
+  border : 1px solid rgb(251, 251, 251);
+  border-radius: 5px;
+  color : #000;
+  font-family: 'Jua', sans-serif;
+  font-size: 16px;
+}
+
+/* 재사용 가능 모듈 */
+
+header{
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  width: 100%;
+  height: 60px;
+  background-color: rgb(26, 188, 156);
+  padding-top: 5px;
+}
+
+.logo-box{
+  width:20%;
+  height: 100%;
+  float: left;
+  margin-left:10px;
+}
+
+.login-box{
+  width:20%;
+  height: 100%;
+  float: right;
+  padding-top: 10px;
+}
+
+.logo {
+  width:100%;
+  height: 100%;
+}
+
+section{
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+}
+
+.section-body{
+  margin-bottom : 90px;
+}
+
+.apt-img{
+  width:100%;
+}
+
+.btn-list{
+  text-align: center;
+  margin-top: 10px;
+}
+
+.btn-list > ul {
+  list-style-type: none;
+  padding-inline-start: 0px;
+}
+
+
+footer{
+  position: fixed;
+  height: 60px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin-bottom: 0px;
+  background-color: rgb(26, 188, 156);
+}
+
+.footer-body{
+  text-align: center;
+  padding-top: 5px;
+}

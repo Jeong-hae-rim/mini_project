@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./server/routes/index');
+var mainRouter = require('./server/routes/main');
 var adminRouter = require('./server/routes/admin');
 var parkingRouter = require('./server/routes/parking');
 
@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use('/', indexRouter);
+app.use('/', mainRouter);
 app.use('/admin', adminRouter);
 app.use('/parking', parkingRouter);
 

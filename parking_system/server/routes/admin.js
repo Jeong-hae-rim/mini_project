@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Customer = require('../controller/Customer');
+var Users = require('../controller/Users');
 
 router.get('/', function(req, res, next) {
 
@@ -11,10 +11,10 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
   let userData = req.body;
-  const customer = new Customer();
+  const users = new Users();
   
   userData.plus = userData.service_end;
-  if(!customer.addUser(userData)) {
+  if(!users.addUser(userData)) {
     res.send("success");
   }
   else {

@@ -6,11 +6,10 @@ class DBHandler {
         this.connection = mysql.createPool({
             connectionLimit : 10,
             host    : 'localhost',
-            port    : '3333',
+            port    : '3306',
             user    : 'root',
-            password: '123123',
-            database: 'parking',
-            dateStrings: 'date'
+            password: '1234',
+            database: 'parking_db'
         });
     }
 

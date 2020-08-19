@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Parking = require('../controller/Parking');
-var Customer = require('../controller/Customer');
+var Users = require('../controller/Users');
 
 
 
@@ -16,9 +16,9 @@ router.post('/', function(req, res, next) {
   let putSuccess = 0;
   let isRegistered = 0;
   const parking = new Parking();
-  const customer = new Customer();
+  const users = new Users();
 
-  customer.checkUser(car_number).then(result => {
+  Users.checkUser(car_number).then(result => {
     isRegistered = result;
 
     parking.checkInCar(car_number, isRegistered).then(result => {
