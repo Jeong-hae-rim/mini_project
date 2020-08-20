@@ -1,0 +1,79 @@
+<html>
+<head>
+    <title>Parking? Parking! :: 입차</title>
+    <link rel='stylesheet' href='/stylesheets/main.css' />
+    <link rel='stylesheet' href='/stylesheets/parking.css' />
+    <link rel='stylesheet' href='/stylesheets/queries.css' />
+    <link rel='stylesheet' href='/venders/css/font-awesome.css' />
+</head>
+<body>
+
+    <header>
+        <div class="logo-box">
+          <img src="/images/apt_logo.png" class="logo">
+        </div>
+  
+        <div class="login-box">
+          <input type="button" value="로그인" class="loginBtn">
+        </div>
+  
+    </header>
+
+    <section>
+        <div class="section-body">
+            <div>
+                <img src="/images/apt_main.png" class="apt-img">
+            </div>
+            <div class="parkingin-body">
+                <div class="parkingin-check">
+                    <input type="text" id="inNumber" class="parking-input" placeholder="입차할 차량 번호 입력">
+                </div>
+                <div class="parkingin-word">
+                    <label id="in_result">입차대기</label>
+                    <p class="parking-word">시간은 입차 시 체크됩니다.</p>
+                </div>
+                <div class="parkingin-btn">
+                    <button type="button" id="checkIn" class="btn greenBtn">입차하기</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-body">
+          <p>2020 <i class="fa fa-heart"></i> made by haerim</p>
+        </div>
+    </footer>
+</body>
+</html>
+
+<script
+        src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous" type="text/javascript"></script>
+
+<script>
+    $(document).ready(function(){
+
+        $( "#checkIn" ).click(function(e) {
+            e.preventDefault();
+
+            let data = { car_number: $('#inNumber').val() };
+            console.log(data);
+
+            $.ajax({
+                type: "POST",
+                url: "/parkingIn",
+                data: data,
+                success: function(response) {
+                    $('#in_result').text(response);
+                },
+                error: function(err) {
+                    console.log("error!");
+                }
+            });
+        });
+    });
+</script>
+
+

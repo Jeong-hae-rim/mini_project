@@ -1,5 +1,6 @@
 
 const dto = require('./UsersDTO');
+const dto2 = require('./MembersDTO');
 const DBHandler = require('./DBHandler');
 const { DATETIME } = require('mysql2/lib/constants/types');
 
