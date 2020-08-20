@@ -7,6 +7,8 @@ var logger = require('morgan');
 var mainRouter = require('./server/routes/main');
 var adminRouter = require('./server/routes/admin');
 var parkingInRouter = require('./server/routes/parkingIn');
+var parkingOutRouter = require('./server/routes/parkingOut');
+var timeCheckRouter = require('./server/routes/timeCheck');
 
 var app = express();
 
@@ -23,6 +25,8 @@ app.use(cookieParser());
 app.use('/', mainRouter);
 app.use('/admin', adminRouter);
 app.use('/parkingIn', parkingInRouter);
+app.use('/parkingOut', parkingOutRouter);
+app.use('/timecheck', timeCheckRouter);
 
 
 // catch 404 and forward to error handler

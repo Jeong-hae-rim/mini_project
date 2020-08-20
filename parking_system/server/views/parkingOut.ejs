@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking? Parking! :: 출차</title>
+    <link rel='stylesheet' href='/stylesheets/main.css' />
+    <link rel='stylesheet' href='/stylesheets/parking.css' />
+    <link rel='stylesheet' href='/stylesheets/queries.css' />
+    <link rel='stylesheet' href='/venders/css/font-awesome.css' />
+</head>
+<body>
+
+    <header>
+        <div class="logo-box">
+          <img src="/images/apt_logo.png" class="logo">
+        </div>
+  
+        <div class="login-box">
+          <input type="button" value="로그인" class="loginBtn">
+        </div>
+  
+    </header>
+
+    <section>
+        <div class="section-body">
+            <div>
+                <img src="/images/apt_main.png" class="apt-img">
+            </div>
+            <div class="parkingin-body">
+                <div class="parkingin-check">
+                    <input type="text" id="outNumber" class="parking-input" placeholder="입차할 차량 번호 입력">
+                </div>
+                <div class="parkingin-word">
+                    <label id="out_result">출차 대기</label>
+                    <p class="parking-word">정산은 출차 시 시작됩니다.</p>
+                </div>
+                <div class="parkingin-btn">
+                    <button type="button" id="checkOut" class="btn blueBtn">출차하기</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-body">
+          <p>2020 <i class="fa fa-heart"></i> made by haerim</p>
+        </div>
+    </footer>
+
+    <script
+        src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous" type="text/javascript"></script>
+
+    <script>
+        $(document).ready(function(){
+
+            $( "#checkOut" ).click(function(e) {
+                e.preventDefault();
+
+                let data = { car_number: $('#outNumber').val() };
+                console.log(data);
+                $.ajax({
+                    type: "POST",
+                    url: "/parkingout",
+                    data: data,
+                    success: function(response) {
+                        $('#out_result').text(response);
+                        console.log(response+"response 입니다");
+                        var data = JSON.parse(response);
+                        if(data.status == '200'){
+                            window.location.replace("/timecheck");
+                        }
+                    },
+                    error: function(err) {
+                        console.log("error!");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
