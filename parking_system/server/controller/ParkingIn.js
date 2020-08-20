@@ -6,7 +6,7 @@ class Parking {
         this.db = new DBHandler();
     }
 
-    async checkInCar(car_number, isRegistered) {
+    async checkInCar(car_number) {
         const db = this.db;
         let rns = 0;
         let query_result;
@@ -15,15 +15,8 @@ class Parking {
         
         intime = intime.toISOString().slice(0, 19).replace('T', ' ');
 
-        if(isRegistered) {
-            query = `INSERT INTO records(car_number, in_time) VALUES ('${car_number}', '${intime}')`;
-        }
-        else {
-            query = `INSERT INTO guest_records(car_number, in_time) VALUES ('${car_number}', '${intime}')`;
-
-        }
+        query = `INSERT INTO cars(c_carnum, c_parkstart) VALUES ('${car_number}', '${intime}')`;
         query_result = await db.getData(query);
-
         if(query_result['affectedRows'] > 0) {
             rns = 1;
         }

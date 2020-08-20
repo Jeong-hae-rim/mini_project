@@ -1,0 +1,28 @@
+
+/* 입차 화면 css */
+
+.parkingin-check, .parkingin-word, .parkingin-btn {
+    text-align: center;
+}
+
+.parkingin-check{
+    margin-top: 70px;
+}
+
+.parkingin-word{
+    margin-top: 40px;
+} 
+
+.parking-word{
+    font-size: 14px;
+}
+
+.parkingin-btn {
+    margin-top: 40px;
+}
+
+.parking-input{
+    width: 270px;
+    height: 50px;
+    text-align: center;
+}

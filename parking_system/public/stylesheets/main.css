@@ -19,6 +19,8 @@ margin: 0;
 height: 100%;
 }
 
+input:focus, button:focus {outline:none;}
+
 /* 재사용 가능 모듈 */
 
 .btn {
@@ -56,12 +58,13 @@ height: 100%;
   margin-bottom:10px;
   border : 1px solid rgb(251, 251, 251);
   border-radius: 5px;
-  color : #000;
+  background-color: rgb(26, 188, 156);
+  color : rgb(251, 251, 251);
   font-family: 'Jua', sans-serif;
   font-size: 16px;
 }
 
-/* 재사용 가능 모듈 */
+/* 프레임 모듈 */
 
 header{
   position: fixed;
@@ -106,17 +109,6 @@ section{
   width:100%;
 }
 
-.btn-list{
-  text-align: center;
-  margin-top: 10px;
-}
-
-.btn-list > ul {
-  list-style-type: none;
-  padding-inline-start: 0px;
-}
-
-
 footer{
   position: fixed;
   height: 60px;
@@ -130,4 +122,18 @@ footer{
 .footer-body{
   text-align: center;
   padding-top: 5px;
+}
+
+
+/* 메인 화면 부가 css */
+
+
+.btn-list{
+  text-align: center;
+  margin-top: 10px;
+}
+
+.btn-list > ul {
+  list-style-type: none;
+  padding-inline-start: 0px;
 }
