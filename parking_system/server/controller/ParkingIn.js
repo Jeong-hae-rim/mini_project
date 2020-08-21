@@ -17,6 +17,7 @@ class Parking {
 
         query = `INSERT INTO cars(c_carnum, c_parkstart) VALUES ('${car_number}', '${intime}')`;
         query_result = await db.getData(query);
+        
         if(query_result['affectedRows'] > 0) {
             rns = 1;
         }

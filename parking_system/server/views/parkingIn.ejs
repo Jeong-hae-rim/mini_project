@@ -10,7 +10,7 @@
 
     <header>
         <div class="logo-box">
-          <img src="/images/apt_logo.png" class="logo">
+            <a href="/"><img src="/images/apt_logo.png" class="logo"></a>
         </div>
   
         <div class="login-box">
@@ -67,6 +67,11 @@
                 data: data,
                 success: function(response) {
                     $('#in_result').text(response);
+                    var data = JSON.parse(response);
+                        if(data.status == '200'){
+                            window.alert("입차 처리 되었습니다.");
+                            window.location.replace("/");
+                        }
                 },
                 error: function(err) {
                     console.log("error!");
