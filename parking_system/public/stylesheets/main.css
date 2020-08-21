@@ -21,6 +21,10 @@ height: 100%;
 
 input:focus, button:focus {outline:none;}
 
+a {
+  text-decoration : none;
+}
+
 /* 재사용 가능 모듈 */
 
 .btn {
@@ -136,4 +140,18 @@ footer{
 .btn-list > ul {
   list-style-type: none;
   padding-inline-start: 0px;
+}
+
+/* 시간 체크 화면 부가 css */
+
+.time-check, .timecheck-btn {
+  text-align: center;
+}
+
+.time-check{
+  margin-top: 40px;
+}
+
+.timecheck-btn{
+  margin-top: 40px;
 }

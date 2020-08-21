@@ -3,9 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Parking? Parking! :: 시간 확인</title>
+    <link rel='stylesheet' href='/stylesheets/main.css' />
+    <link rel='stylesheet' href='/stylesheets/parking.css' />
+    <link rel='stylesheet' href='/stylesheets/queries.css' />
+    <link rel='stylesheet' href='/venders/css/font-awesome.css' />
 </head>
 <body>
-    여기는 시간 정산
+    
+    <header>
+        <div class="logo-box">
+            <a href="/"><img src="/images/apt_logo.png" class="logo"></a>
+        </div>
+  
+        <div class="login-box">
+          <input type="button" value="로그인" class="loginBtn">
+        </div>
+  
+    </header>
+
+    <section>
+        <div class="section-body">
+            <div>
+                <img src="/images/apt_main.png" class="apt-img">
+            </div>
+            <div class="parkingin-body">
+                <div class="parkingin-check">
+                    <input type="text" id="checkTime" class="parking-input" placeholder="정산할 차량 번호 입력">
+                </div>
+                <div class="parkingin-word">
+                    <p id="out_result">정산 대기</p>
+                    <p class="parking-word">정산은 시간 확인 시 출력됩니다.</p>
+                </div>
+                <div class="parkingin-btn">
+                    <button type="button" id="checkStart" class="btn blueBtn">주차 총 시간</button>
+                    <button type="button" id="payStart" class="btn blueBtn" style="display: none;">정산 시작</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-body">
+          <p>2020 <i class="fa fa-heart"></i> made by haerim</p>
+        </div>
+    </footer>
+    
+    <script
+    src="https://code.jquery.com/jquery-2.2.4.min.js"
+    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+    crossorigin="anonymous" type="text/javascript"></script>
+
+    <script>
+        function calcPrice(value){
+            var hms = value;   // your input string
+            var a = hms.split(':'); // split it at the colons
+
+            // minutes are worth 60 seconds. Hours are worth 60 minutes.
+            var seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]);
+            var price = (seconds/60)*20;
+            return price;
+        }
+
+        $(document).ready(function(){
+    
+            $( "#checkStart" ).click(function(e) {
+                e.preventDefault();
+    
+                let data = { car_number: $('#checkTime').val() };
+                console.log(data);
+                $.ajax({
+                    type: "POST",
+                    url: "/timecheck",
+                    data: data,
+                    success: function(response) {
+                        var arr = JSON.stringify(response);
+                        var arr2 = JSON.parse(arr);
+                        console.log(arr2); 
+
+                        var value = '';
+                        for(var idx in arr2) {
+                            var item = arr2[idx];
+                            for(var key in item) {
+                                value = item[key];
+                                console.log(value);
+                            }
+                        }
+                        if(value == null){
+                            $('#out_result').text('출차해주세요.');
+                        } else {
+                            $('#out_result').text('총 주차 시간 : '+value);
+                            
+                            if(response == '출차해주세요.'){
+                                jQuery('#payStart').css("display", "none");  
+                            } else {
+                                jQuery('#payStart').css( {'display':'block', 'margin-left':'26%'});
+                                $('#payStart').click(function(){
+                                    var price = calcPrice(value);
+                                    alert("주차비용은 "+price+"원입니다.");
+                                    location.href='/pay?price='+ price;
+                                })
+                            }
+                        }
+                    },
+                    error: function(err) {
+                        console.log(err);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

@@ -13,7 +13,7 @@
 
     <header>
         <div class="logo-box">
-          <img src="/images/apt_logo.png" class="logo">
+            <a href="/"><img src="/images/apt_logo.png" class="logo"></a>
         </div>
   
         <div class="login-box">
@@ -29,7 +29,7 @@
             </div>
             <div class="parkingin-body">
                 <div class="parkingin-check">
-                    <input type="text" id="outNumber" class="parking-input" placeholder="입차할 차량 번호 입력">
+                    <input type="text" id="outNumber" class="parking-input" placeholder="출차할 차량 번호 입력">
                 </div>
                 <div class="parkingin-word">
                     <label id="out_result">출차 대기</label>
@@ -67,10 +67,10 @@
                     data: data,
                     success: function(response) {
                         $('#out_result').text(response);
-                        console.log(response+"response 입니다");
                         var data = JSON.parse(response);
                         if(data.status == '200'){
-                            window.location.replace("/timecheck");
+                            window.alert("출차 처리 되었습니다. <br> 정산해주세요.");
+                            window.location.replace("/");
                         }
                     },
                     error: function(err) {

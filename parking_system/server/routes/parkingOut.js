@@ -15,8 +15,7 @@ router.post('/', function(req, res, next) {
   let getSuccess = 0;
   const parkingOut = new ParkingOut();
 
-  parkingOut.checkOutCar(car_number).then(result => {
-    console.log('들어와')  
+  parkingOut.checkOutCar(car_number).then(result => { 
     getSuccess = result;
     console.log(result);
     if(getSuccess === 0) {
@@ -25,11 +24,9 @@ router.post('/', function(req, res, next) {
              "message": '정산이 시작됩니다.'
         }        
        res.end(JSON.stringify(status));
-       console.log('제발...');
     }
     else{
         res.send('차량 번호를 입력해주세요.');
-        console.log('안 돼')
     }
   });
 });

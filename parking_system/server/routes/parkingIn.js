@@ -21,8 +21,13 @@ router.post('/', function(req, res, next) {
     if(putSuccess === 0) {
       res.send("failed");
     }
-
-    res.send('입차되었습니다.');
+    else{
+      var status = {
+        "status": 200,
+        "message": '입차가 시작됩니다.'
+      }        
+      res.end(JSON.stringify(status));
+    }
 
   });
 });

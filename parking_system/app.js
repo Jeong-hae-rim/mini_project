@@ -9,6 +9,7 @@ var adminRouter = require('./server/routes/admin');
 var parkingInRouter = require('./server/routes/parkingIn');
 var parkingOutRouter = require('./server/routes/parkingOut');
 var timeCheckRouter = require('./server/routes/timeCheck');
+var payRouter = require('./server/routes/pay');
 
 var app = express();
 
@@ -28,6 +29,7 @@ app.use('/parkingIn', parkingInRouter);
 app.use('/parkingOut', parkingOutRouter);
 app.use('/timecheck', timeCheckRouter);
 
+app.use('/pay', payRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
