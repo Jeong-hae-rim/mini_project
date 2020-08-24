@@ -32,7 +32,8 @@
                     <input type="text" id="checkTime" class="parking-input" placeholder="정산할 차량 번호 입력">
                 </div>
                 <div class="parkingin-word">
-                    <p id="out_result">정산 대기</p>
+                    <p id="out_result">시간 집계 중</p>
+                    <p id="out_result2"></p>
                     <p class="parking-word">정산은 시간 확인 시 출력됩니다.</p>
                 </div>
                 <div class="parkingin-btn">
@@ -56,12 +57,12 @@
 
     <script>
         function calcPrice(value){
-            var hms = value;   // your input string
-            var a = hms.split(':'); // split it at the colons
+            var hms = value;   // value값을 넣는다.
+            var a = hms.split(':'); // :으로 찢는다.
 
-            // minutes are worth 60 seconds. Hours are worth 60 minutes.
+            // 배열로. 0-h, 1-m, 2-s, 분은 60초이고 시는 60분.
             var seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]);
-            var price = (seconds/60)*20;
+            var price = (seconds/60)*20; // 분당 20원이므로 초에서 60을 나누고 20을 곱함
             return price;
         }
 
@@ -77,9 +78,13 @@
                     url: "/timecheck",
                     data: data,
                     success: function(response) {
+
+                        if(response == 0) {
+                            alert("입/출차가 되지 않은 차량입니다.");
+                            location.href='/';
+                        }
                         var arr = JSON.stringify(response);
                         var arr2 = JSON.parse(arr);
-                        console.log(arr2); 
 
                         var value = '';
                         for(var idx in arr2) {
@@ -89,20 +94,20 @@
                                 console.log(value);
                             }
                         }
+
                         if(value == null){
                             $('#out_result').text('출차해주세요.');
+                            alert("출차가 되지 않은 차량입니다.");
+                            location.href='/';
                         } else {
-                            $('#out_result').text('총 주차 시간 : '+value);
-                            
+                            $('#out_result').text('총 주차 시간');
+                            $('#out_result2').text(value);
                             if(response == '출차해주세요.'){
-                                jQuery('#payStart').css("display", "none");  
+                                alert("입/출차가 되지 않은 차량입니다."); 
+                                jQuery('#payStart').css("display", "none");
+                                location.href='/';
                             } else {
                                 jQuery('#payStart').css( {'display':'block', 'margin-left':'26%'});
-                                $('#payStart').click(function(){
-                                    var price = calcPrice(value);
-                                    alert("주차비용은 "+price+"원입니다.");
-                                    location.href='/pay?price='+ price;
-                                })
                             }
                         }
                     },
@@ -110,8 +115,29 @@
                         console.log(err);
                     }
                 });
+
+                
+                $( "#payStart" ).click(function(e) {
+                    console.log("!!!!");
+                    event.preventDefault();
+
+                    var text = $( '#out_result2' ).text();
+                    var carnum = $('#checkTime').val();
+                    var price = calcPrice(text)
+                    console.log("price"+price);
+                    var data = {
+                        carnum : carnum,
+                        price : price
+                    }
+                    alert("총 주차 비용은 "+price+"원 입니다.");
+                    console.log(data);
+                    location.href="/pay";
+                });
             });
         });
+
+        
+
     </script>
 </body>
 </html>

@@ -1,24 +1,119 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Parking? Parking! :: 정산</title>
+    <link rel='stylesheet' href='/stylesheets/main.css' />
+    <link rel='stylesheet' href='/stylesheets/parking.css' />
+    <link rel='stylesheet' href='/stylesheets/queries.css' />
+    <link rel='stylesheet' href='/venders/css/font-awesome.css' />
 </head>
 <body>
+    <header>
+        <div class="logo-box">
+            <a href="/"><img src="/images/apt_logo.png" class="logo"></a>
+        </div>
+  
+        <div class="login-box">
+          <input type="button" value="로그인" class="loginBtn">
+        </div>
+  
+    </header>
 
-    <p id="output"></p>
+    <section>
+        <div class="section-body">
+            <div>
+                <img src="/images/apt_main.png" class="apt-img">
+            </div>
+            <div class="parkingin-body">
+                <div class="parkingin-check">
+                    <ul class="pay-list">
+                        <li><div class="search-box">
+                                <div class="in-line">
+                                    <input type="text" id="checkCar" class="search-car" value="" placeholder="정산할 차량 번호 입력">
+                                    <input type="button" id="search" class="search-btn" value="click">
+                                </div>
+                            </div>
+                        </li>
+                        <li><input type="text" id="checkPrice" class="parking-input" placeholder="총 가격"></li>
+                        <li><input type="radio" name="radioTxt" value="card">카드 
+                            <input type="radio" name="radioTxt" value="bill">현금</li>
+                        <li><input type="text" id="checkBill" class="parking-input" placeholder="금액 입력"></li>
+                    </ul>
+                </div>
+                <div class="parkingin-word">
+                    <p id="out_result">계산 대기</p>
+                </div>
+                <div class="parkingin-btn">
+                    <button type="button" id="payStart" class="btn blueBtn">계산하기</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-body">
+          <p>2020 <i class="fa fa-heart"></i> made by haerim</p>
+        </div>
+    </footer>
+    
+
+    <script
+    src="https://code.jquery.com/jquery-2.2.4.min.js"
+    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+    crossorigin="anonymous" type="text/javascript"></script>
 
     <script>
-        const URLSearch = new URLSearchParams(location.search);
-        console.log(URLSearch);
-        function searchParam(key) {
-            return new URLSearchParams(location.search).get(key);
-        };
-        var price = searchParam('price');
+        $(document).ready(function(){
 
-        document.getElementById('output').innerHTML = price + '원';
-        console.log(searchParam('price'));
+            $( "#search" ).click(function(e) {
+                e.preventDefault();
+
+                let data = { car_number: $('#checkCar').val() };
+                console.log("data"+data);
+                $.ajax({
+                    type: "POST",
+                    url: "/pay",
+                    data: data,
+                    success: function(response) {
+                        console.log("응답"+response)
+                        $('#checkPrice').val(response);
+                    },
+                    error: function(err) {
+                        console.log("error!");
+                    }
+                });
+            });
+
+
+            $( "#payStart" ).click(function(e) {
+                e.preventDefault();
+                var radioCheck = $('input[name="radioTxt"]').is(':checked');
+                let data = { 
+                    car_number: $('#checkCar').val(),
+                    totalPrice: $('#checkPrice').val(),
+                    method : $('input[name="radioTxt"]:checked').val(),
+                    userPrice : $('#checkBill').val()
+                };
+                console.log('라디오 버튼 체크 : '+radioCheck);
+                console.log(data);
+                $.ajax({
+                    type: "POST",
+                    url: "/payfinish",
+                    data: data,
+                    success: function(response) {
+                        $('#out_result').val(response);
+                        alert('계산이 완료되었습니다.');
+                        window.location.replace("/");
+
+                    },
+                    error: function(err) {
+                        console.log("error!");
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>

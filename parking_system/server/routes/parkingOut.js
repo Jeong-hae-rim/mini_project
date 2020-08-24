@@ -1,11 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var ParkingOut = require('../controller/ParkingOut');
-var bodyParser = require('body-parser');
 
 
 router.get('/', function(req, res, next) {
-
   res.render('parkingOut');
 });
 
@@ -19,14 +17,14 @@ router.post('/', function(req, res, next) {
     getSuccess = result;
     console.log(result);
     if(getSuccess === 0) {
-        var status = {
-             "status": 200,
-             "message": '정산이 시작됩니다.'
-        }        
-       res.end(JSON.stringify(status));
+      var status = {
+        "status": 200,
+        "message": '정산이 시작됩니다.'
+      }        
+      res.end(JSON.stringify(status));
     }
     else{
-        res.send('차량 번호를 입력해주세요.');
+      res.send('차량 번호를 입력해주세요.');
     }
   });
 });
