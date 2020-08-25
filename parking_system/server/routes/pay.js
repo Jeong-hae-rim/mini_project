@@ -4,7 +4,7 @@ var Pay = require('../controller/pay');
 
 router.get('/', function(req, res, next) {
   console.log("?");
-  res.render('pay');
+  res.render('pay', { title: 'Parking? Parking!' });
 });
 
 router.post('/', function(req, res, next) {

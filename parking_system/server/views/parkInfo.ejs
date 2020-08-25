@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %> :: 주차장 정보</title>
+    <link rel="shortcut icon" href="/images/apt_con.png" type="image/x-icon">
+    <link rel='stylesheet' href='/stylesheets/main.css' />
+    <link rel='stylesheet' href='/stylesheets/parking.css' />
+    <link rel='stylesheet' href='/stylesheets/queries.css' />
+    <link rel='stylesheet' href='/venders/css/font-awesome.css' />
+</head>
+<body>
+    <header>
+        <div class="logo-box">
+            <a href="/"><img src="/images/apt_logo.png" class="logo"></a>
+        </div>
+  
+        <div class="login-box">
+          <input type="button" value="로그인" id="loginBtn">
+        </div>
+  
+    </header>
+
+    <section>
+        <div class="section-body">
+            <div>
+                <img src="/images/apt_main.png" class="apt-img">
+            </div>
+            <div class="parkinfo-body">
+                <ul class="parkinfo-list">
+                    <li>전체</li>
+                    <li><input type="text" class="parking-input" value="<%= total %>" readonly></li>
+                    <li>잔여석</li>
+                    <li><input type="text" id="park-seat" class="parking-input" value="<%= result %>" readonly></li>
+                    <li>시간 당 주차비</li>
+                    <li><input type="text" class="parking-input" value="200원" readonly></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-body">
+          <p>2020 <i class="fa fa-heart"></i> made by haerim</p>
+        </div>
+    </footer>
+</body>
+</html>

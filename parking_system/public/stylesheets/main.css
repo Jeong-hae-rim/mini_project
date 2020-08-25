@@ -21,6 +21,8 @@ height: 100%;
 
 input:focus, button:focus {outline:none;}
 
+#park-seat{color:red;}
+
 a {
   text-decoration : none;
 }
@@ -53,6 +55,16 @@ a {
 
 #blueBtn:hover, #blueBtn:active {
   background-color: rgb(26, 76, 109);
+  transition: background-color 0.3s;
+}
+
+
+.greenBtn {
+  background-color: rgb(26, 188, 156);
+}
+
+.greenBtn:hover, .greenBtn:active {
+  background-color: rgb(18, 124, 103);
   transition: background-color 0.3s;
 }
 
@@ -125,13 +137,19 @@ input[type=button]:hover{
   color : #fff;
 }
 
-.pay-list li {
+.pay-list li, .parkinfo-list li {
   list-style-type: none;
   margin-bottom:20px;
 }
 
-.pay-list {
+.pay-list, .parkinfo-list {
   padding-inline-start: 0px;
+  text-align: center;
+}
+
+.parkinfo-list {
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
 /* 프레임 모듈 */

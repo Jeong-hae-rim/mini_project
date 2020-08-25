@@ -4,7 +4,7 @@ var TimeController  = require('../controller/TimeController');
 
 /* GET timechek page. */
 router.get('/', function(req, res, next) {
-  res.render('timeCheck');
+  res.render('timeCheck', { title: 'Parking? Parking!' });
 });
 
 router.post('/', function(req, res, next) {

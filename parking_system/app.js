@@ -15,6 +15,8 @@ var payFinishRouter = require('./server/routes/payfinish');
 var ticketsRouter = require('./server/routes/tickets');
 var ticketsAddRouter = require('./server/routes/ticketsAdd');
 var guestCheckRouter = require('./server/routes/guestCheck');
+var parkInfoRouter = require('./server/routes/parkInfo');
+
 
 var app = express();
 
@@ -39,6 +41,7 @@ app.use('/payfinish', payFinishRouter);
 app.use('/tickets', ticketsRouter);
 app.use('/ticketsadd', ticketsAddRouter);
 app.use('/guestcheck', guestCheckRouter);
+app.use('/parkinfo', parkInfoRouter);
 
 
 // catch 404 and forward to error handler

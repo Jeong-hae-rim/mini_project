@@ -6,7 +6,7 @@ var ParkingIn = require('../controller/ParkingIn');
 
 router.get('/', function(req, res, next) {
 
-  res.render('parkingIn');
+  res.render('parkingIn', { title: 'Parking? Parking!' });
 });
 
 

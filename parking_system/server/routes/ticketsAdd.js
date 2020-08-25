@@ -5,7 +5,7 @@ var Tickets = require('../controller/Tickets');
 
 router.get('/', function(req, res, next) {
     console.log("ticketadd connect");
-    res.render('ticketadd');
+    res.render('ticketadd', { title: 'Parking? Parking!' });
 });
   
 
