@@ -6,10 +6,95 @@
 
 }
 
-@media only screen and (max-width: 767px){
+@media only screen and (min-width: 700px){
+
+    header{
+        height: 110px;
+        background-color: rgb(26, 188, 156);
+        padding-top: 5px;
+    }
+
+    .btn-list {
+        display: none;
+    }
+
+    .btn-list2 {
+        display: block;
+        text-align: center;
+    }
+
+    .btn2{
+        width: 300px;
+        height: 200px;
+        margin: 10px;
+        border: none;
+        border-radius: 20px;
+        color: #fff;
+        font-size: 40px;
+        font-family: 'Jua', sans-serif;
+    }
+
+    .green2{
+        background-color: rgb(26, 188, 156);
+    }
+
+    
+    .green2:hover, .green2:active {
+        background-color: rgb(18, 124, 103);
+        transition: background-color 0.3s;
+    }
+  
+    
+    .blue2{
+        background-color: rgb(41, 128, 185);
+    }
+    
+    .blue2:hover, .blue2:active {
+      background-color: rgb(26, 76, 109);
+      transition: background-color 0.3s;
+    }
+
+    .login-box{
+        width: 80px;
+        height: 80px;
+        float: right;
+        margin-right: 30px;
+      }
+      
+    .cog{
+    width:100%;
+    margin-top:10px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    }
+
+
+    .logo-box{
+        width:40%;
+        height: 100%;
+        float: left;
+        margin-left:10px;
+    }
+
+    .logo_long{
+        display: block;
+        width: 100%;
+        margin-top:20px;
+    }
+
+    .logo{
+        display: none;
+    }
+
     
 }
 
-@media only screen and (max-width: 360px){
-    
+@media only screen and (max-width: 700px){
+    .btn-list2{
+        display: none;
+    }
+
+    .logo_long{
+        display: none;
+    }
 }
