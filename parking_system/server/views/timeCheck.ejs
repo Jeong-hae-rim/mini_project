@@ -17,7 +17,7 @@
         </div>
   
         <div class="login-box">
-          <input type="button" value="로그인" class="loginBtn">
+          <input type="button" value="로그인" id="loginBtn">
         </div>
   
     </header>
@@ -34,11 +34,13 @@
                 <div class="parkingin-word">
                     <p id="out_result">시간 집계 중</p>
                     <p id="out_result2"></p>
-                    <p class="parking-word">정산은 시간 확인 시 출력됩니다.</p>
+                    <p class="parking-word2">정산은 시간 확인 시 출력됩니다.</p>
                 </div>
-                <div class="parkingin-btn">
+                <div class="checkin-btn">
                     <button type="button" id="checkStart" class="btn blueBtn">주차 총 시간</button>
-                    <button type="button" id="payStart" class="btn blueBtn" style="display: none;">정산 시작</button>
+                </div>
+                <div class="checkin-btn"> 
+                    <button type="button" id="payStart" class="btn blueBtn" style="display: none; margin-top:10px;">정산 시작</button>
                 </div>
             </div>
         </div>
@@ -107,7 +109,7 @@
                                 jQuery('#payStart').css("display", "none");
                                 location.href='/';
                             } else {
-                                jQuery('#payStart').css( {'display':'block', 'margin-left':'26%'});
+                                jQuery('#payStart').css( {'display':'inline-block'});
                             }
                         }
                     },

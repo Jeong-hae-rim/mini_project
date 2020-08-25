@@ -38,12 +38,21 @@ a {
   font-size: 20px;
 }
 
-.greenBtn {
+#greenBtn {
   background-color: rgb(26, 188, 156);
 }
 
-.greenBtn:hover, .greenBtn:active {
+#greenBtn:hover, #greenBtn:active {
   background-color: rgb(18, 124, 103);
+  transition: background-color 0.3s;
+}
+
+#blueBtn {
+  background-color: rgb(41, 128, 185);
+}
+
+#blueBtn:hover, #blueBtn:active {
+  background-color: rgb(26, 76, 109);
   transition: background-color 0.3s;
 }
 
@@ -56,7 +65,7 @@ a {
   transition: background-color 0.3s;
 }
 
-.loginBtn {
+#loginBtn {
   width: 70px;
   height: 30px;
   margin-bottom:10px;
@@ -82,9 +91,11 @@ a {
   height:50px;
   margin: 0 auto;
 }
+
 input{
   margin: 0px;
 }
+
 .search-car{
   width:70%;
   height:100%;
@@ -94,8 +105,8 @@ input{
   box-sizing: border-box;
   color:black;
   text-align: center;
-
 }
+
 .search-btn{
   width: 30%;
   height: 100%;
@@ -108,6 +119,7 @@ input{
   box-sizing: border-box;
   text-align: center;
 }
+
 input[type=button]:hover{
   background-color: rgb(41, 128, 185);
   color : #fff;

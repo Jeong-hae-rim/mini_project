@@ -26,7 +26,7 @@ class Parking {
 
             // 배열로. 0-h, 1-m, 2-s, 분은 60초이고 시는 60분.
             var seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]);
-            var price = (seconds/60)*20; // 분당 20원이므로 초에서 60을 나누고 20을 곱함
+            var price = Math.round((seconds/60)*20); // 분당 20원이므로 초에서 60을 나누고 20을 곱함
 
             intime = intime.toISOString().slice(0, 19).replace('T', ' ');
 

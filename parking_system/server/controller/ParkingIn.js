@@ -15,7 +15,7 @@ class Parking {
         
         intime = intime.toISOString().slice(0, 19).replace('T', ' ');
 
-        query = `INSERT INTO cars(c_carnum, c_parkstart) VALUES ('${car_number}', '${intime}')`;
+        query = `INSERT INTO cars(c_carnum, c_parkstart) VALUES ('${car_number}', now())`;
         query_result = await db.getData(query);
         
         if(query_result['affectedRows'] > 0) {
