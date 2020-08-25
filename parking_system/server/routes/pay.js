@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var Pay = require('../controller/pay');
+const { JSON } = require('mysql2/lib/constants/types');
+const { json } = require('body-parser');
 
 router.get('/', function(req, res, next) {
   console.log("?");
@@ -16,10 +18,16 @@ router.post('/', function(req, res, next) {
 
   pay.checkOutCar(car_number).then(result => {
     getSuccess = result;
+    console.log(result.price);
+    console.log(result.member);
     if(result === 0){
       res.send('?');
     } else {
-      res.send(result);
+      if(!result.member){
+        res.send(result.price);
+      } else {
+        res.send('member');
+      }
     }
   });
 });

@@ -78,8 +78,15 @@
                     url: "/pay",
                     data: data,
                     success: function(response) {
-                        console.log("응답"+response)
-                        $('#checkPrice').val(response);
+                        console.log("응답"+JSON.stringify(response));
+
+                        if(response=='member'){
+                            $('#checkPrice').val('입주자입니다.');
+                            alert('입주자입니다. 오늘도 좋은 하루 보내세요.');
+                            location.href='/';
+                        }else{
+                            $('#checkPrice').val(response);
+                        }
                     },
                     error: function(err) {
                         console.log("error!");
@@ -99,20 +106,29 @@
                 };
                 console.log('라디오 버튼 체크 : '+radioCheck);
                 console.log(data);
-                $.ajax({
-                    type: "POST",
-                    url: "/payfinish",
-                    data: data,
-                    success: function(response) {
-                        $('#out_result').val(response);
-                        alert('계산이 완료되었습니다.');
-                        window.location.replace("/");
 
-                    },
-                    error: function(err) {
-                        console.log("error!");
-                    }
-                });
+                if(parseInt($('#checkPrice').val()) > parseInt($('#checkBill').val())){
+                    alert('금액이 적습니다.');
+                } else if (parseInt($('#checkPrice').val()) < parseInt($('#checkBill').val())){
+                    alert('금액이 많습니다.');
+                } else {
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/payfinish",
+                        data: data,
+                        success: function(response) {
+                            $('#out_result').val(response);
+                            alert('계산이 완료되었습니다.');
+                            window.location.replace("/");
+
+                        },
+                        error: function(err) {
+                            console.log("error!");
+                        }
+                    });
+                }
+               
             });
         });
     </script>

@@ -1,6 +1,6 @@
 const DBHandler = require('../models/DBHandler'); 
 
-class Parking {
+class Pay {
 
     constructor() {
         this.db = new DBHandler();
@@ -12,10 +12,12 @@ class Parking {
             const db = this.db;
             let rns = 0;
             let query;
+            let query2;
             let query_result;
+            let query_result2;
             let intime = new Date();
 
-            query = `SELECT TIME_FORMAT((c_parkfinish-c_parkstart), '%H:%i:%s') AS total FROM cars WHERE c_carnum = '${car_number}' order by c_parkstart DESC limit 1`;
+            query = `SELECT TIME_FORMAT(SEC_TO_TIME(c_parkfinish-c_parkstart), '%H:%i:%s') AS total FROM cars WHERE c_carnum = '${car_number}' order by c_parkstart DESC limit 1`;
             query_result = await db.getData(query);
             
             console.log(query_result[0].total);
@@ -30,14 +32,24 @@ class Parking {
 
             intime = intime.toISOString().slice(0, 19).replace('T', ' ');
 
+            query2 = `SELECT U.u_name AS name, M.m_carnum FROM users U, members M WHERE U.uid = M.uid AND M.m_carnum = '${car_number}'`;
+            query_result2 = await db.getData(query2);
+
+            console.log("result2"+query_result2[0]);
+
+            var result = {
+                price : price+'원',
+                member : query_result2[0]
+            }
+
             if(query_result['affectedRows'] > 0) {
                 rns = 1;
             }
             else {
-                console.log(price+"원");
-                console.log(query_result);
+                console.log(result);
+                return result;
             }
-            return price+"원";
+            return rns;
         }
     }
 
@@ -65,4 +77,4 @@ class Parking {
     }
 }
 
-module.exports = Parking;
+module.exports = Pay;

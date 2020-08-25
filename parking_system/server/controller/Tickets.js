@@ -11,10 +11,8 @@ class Tickets {
         let rns = 0;
         let query1;
         let query2;
-        let query3;
         let query_result1;
         let query_result2;
-        let query_result3;
         userprice = parseInt(userprice);
 
         query1 = `SELECT t_carnum FROM tickets WHERE t_carnum = '${carnum}'`;
