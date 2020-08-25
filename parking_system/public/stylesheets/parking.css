@@ -1,7 +1,7 @@
 
 /* 입차 화면 css */
 
-.parkingin-check, .parkingin-word, .parkingin-btn {
+.parkingin-check, .parkingin-word, .parkingin-btn, .new-btn, .add-btn, .checkin-btn {
     text-align: center;
 }
 
@@ -17,8 +17,16 @@
     font-size: 14px;
 }
 
-.parkingin-btn {
+.parking-word2{
+    margin-bottom:60px;
+}
+
+.parkingin-btn, .new-btn {
     margin-top: 40px;
+}
+
+.add-btn {
+    margin-top: 10px;
 }
 
 .parking-input{

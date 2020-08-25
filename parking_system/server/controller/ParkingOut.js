@@ -22,7 +22,7 @@ class Parking {
             query = `SELECT c_carnum FROM cars WHERE c_carnum = '${car_number}'`;
             query_result = await db.getData(query);
             
-            query2 = `UPDATE cars SET c_parkfinish = '${intime}' WHERE c_carnum = '${car_number}'`;
+            query2 = `UPDATE cars SET c_parkfinish = now() WHERE c_carnum = '${car_number}'`;
             query_result2 = await db.getData(query2);
 
             if(query_result['affectedRows'] > 0 && query_result2['affectedRows'] > 0) {

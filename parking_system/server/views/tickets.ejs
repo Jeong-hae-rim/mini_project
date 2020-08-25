@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parking? Parking! :: 정산</title>
+    <title>Parking? Parking! :: 정기권 등록</title>
     <link rel='stylesheet' href='/stylesheets/main.css' />
     <link rel='stylesheet' href='/stylesheets/parking.css' />
     <link rel='stylesheet' href='/stylesheets/queries.css' />
@@ -27,11 +27,22 @@
                 <img src="/images/apt_main.png" class="apt-img">
             </div>
             <div class="parkingin-body">
-                <div class="parkingin-word">
-                    <p id="out_result">계산 대기</p>
+                <div class="parkingin-check">
+                    <ul class="pay-list">
+                        <li><input type="text" id="checkCar" class="parking-input" placeholder="등록할 차량 번호"></li>
+                        <li><input type="radio" name="radioTxt" value="card">카드 
+                            <input type="radio" name="radioTxt" value="bill">현금</li>
+                        <li><input type="text" id="checkBill" class="parking-input" placeholder="충전할 금액 입력"></li>
+                    </ul>
                 </div>
-                <div class="parkingin-btn">
-                    <button type="button" id="payStart" class="btn blueBtn">계산하기</button>
+                <div class="parkingin-word">
+                    <p id="out_result">충전 대기</p>
+                </div>
+                <div class="new-btn">
+                    <button type="button" id="newStart" class="btn blueBtn">신규 충전하기</button>
+                </div>
+                <div class="add-btn">    
+                    <button type="button" id="addStart" class="btn blueBtn">잔액 충전하기</button>
                 </div>
             </div>
         </div>
@@ -52,31 +63,11 @@
     <script>
         $(document).ready(function(){
 
-            $( ".search" ).click(function(e) {
-                e.preventDefault();
-
-                let data = { car_number: $('#checkCar').val() };
-                console.log(data);
-                $.ajax({
-                    type: "POST",
-                    url: "/payfinish",
-                    data: data,
-                    success: function(response) {
-                        $('#checkPrice').val(response);
-                    },
-                    error: function(err) {
-                        console.log("error!");
-                    }
-                });
-            });
-
-
-            $( "#payStart" ).click(function(e) {
+            $( "#newStart" ).click(function(e) {
                 e.preventDefault();
                 var radioCheck = $('input[name="radioTxt"]').is(':checked');
                 let data = { 
                     car_number: $('#checkCar').val(),
-                    totalPrice: $('#checkPrice').val(),
                     method : $('input[name="radioTxt"]:checked').val(),
                     userPrice : $('#checkBill').val()
                 };
@@ -84,11 +75,44 @@
                 console.log(data);
                 $.ajax({
                     type: "POST",
-                    url: "/pay",
+                    url: "/tickets",
                     data: data,
                     success: function(response) {
-                        $('#out_result').val(response);
-                        alert('계산이 완료되었습니다.');
+                        if(response === '0'){
+                            $('#out_result').text('이미 등록된 차량입니다.');
+                            alert('이미 등록된 차량입니다.');
+                        } else {
+                            $('#out_result').text('신규 충전이 완료되었습니다.');
+                            alert('신규 충전이 완료되었습니다.');
+                            window.location.replace("/");
+                        }
+
+                    },
+                    error: function(err) {
+                        console.log("error!");
+                    }
+                });
+            });
+
+            $( "#addStart" ).click(function(e) {
+                e.preventDefault();
+                var radioCheck = $('input[name="radioTxt"]').is(':checked');
+                let data = { 
+                    carnum: $('#checkCar').val(),
+                    method : $('input[name="radioTxt"]:checked').val(),
+                    addprice : $('#checkBill').val()
+                };
+                console.log('라디오 버튼 체크 : '+radioCheck);
+                console.log(data);
+                $.ajax({
+                    type: "POST",
+                    url: "/ticketsadd",
+                    data: data,
+                    success: function(response) {
+                        $('#out_result').text('잔액 충전이 완료되었습니다.');
+                        alert('잔액 충전이 완료되었습니다.');
+                        window.location.replace("/");
+
                     },
                     error: function(err) {
                         console.log("error!");

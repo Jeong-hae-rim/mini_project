@@ -12,6 +12,9 @@ var parkingOutRouter = require('./server/routes/parkingOut');
 var timeCheckRouter = require('./server/routes/timeCheck');
 var payRouter = require('./server/routes/pay');
 var payFinishRouter = require('./server/routes/payfinish');
+var ticketsRouter = require('./server/routes/tickets');
+var ticketsAddRouter = require('./server/routes/ticketsAdd');
+var guestCheckRouter = require('./server/routes/guestCheck');
 
 var app = express();
 
@@ -33,6 +36,10 @@ app.use('/parkingOut', parkingOutRouter);
 app.use('/timecheck', timeCheckRouter);
 app.use('/pay', payRouter);
 app.use('/payfinish', payFinishRouter);
+app.use('/tickets', ticketsRouter);
+app.use('/ticketsadd', ticketsAddRouter);
+app.use('/guestcheck', guestCheckRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
