@@ -1,0 +1,90 @@
+
+.info-body{
+    margin-top: 120px;
+    text-align: center;
+    padding-bottom: 100px;
+    width:100%;
+}
+
+.contactBtn{
+    width: 200px;
+    height: 50px;
+    border:none;
+    background-color: rgb(26, 188, 156);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.contactBtn:hover, .contactBtn:active{
+    background-color: rgb(18, 124, 103);
+    transition: background-color 0.3s;
+}
+
+/* 컨택트 css */
+
+.contact-input {
+    width: 400px;
+    height: 50px;
+}
+
+.contact-area {
+    width: 400px;
+    height: 100px;
+}
+
+.cog-btn{
+    width: 150px;
+    height: 40px;
+    background-color: rgb(41, 128, 185);
+    color: #fff;
+    border: none;
+}
+
+.cog-btn:hover, .cog-btn:active{
+    background-color: rgb(26, 76, 109);
+    transition: background-color 0.3s;
+}
+
+
+/* 로그인 */
+
+.info-input{
+    width: 300px;
+    height: 50px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.info{
+    width: 300px;
+    height: 50px;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.notice{
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+/* admin 페이지 */
+
+h3 {
+    padding-top: 80px;
+    text-align: center;
+}
+
+.user-table {
+    margin : 0 auto;
+    width: 600px;
+}
+
+.user-table th, .user-table tr, .user-table td{
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    text-align: center;
+
+}

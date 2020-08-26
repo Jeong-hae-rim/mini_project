@@ -6,7 +6,11 @@ var bodyParser = require('body-parser');
 var logger = require('morgan');
 
 var mainRouter = require('./server/routes/main');
+var cogRouter = require('./server/routes/Cog');
+var appInfoRouter = require('./server/routes/appInfo');
+var contactRouter = require('./server/routes/contact');
 var adminRouter = require('./server/routes/admin');
+var adminPageRouter = require('./server/routes/adminPage');
 var parkingInRouter = require('./server/routes/parkingIn');
 var parkingOutRouter = require('./server/routes/parkingOut');
 var timeCheckRouter = require('./server/routes/timeCheck');
@@ -16,6 +20,7 @@ var ticketsRouter = require('./server/routes/tickets');
 var ticketsAddRouter = require('./server/routes/ticketsAdd');
 var guestCheckRouter = require('./server/routes/guestCheck');
 var parkInfoRouter = require('./server/routes/parkInfo');
+
 
 
 var app = express();
@@ -28,11 +33,15 @@ app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.urlencoded({ extended: false}));
 app.use(cookieParser());
 
 app.use('/', mainRouter);
+app.use('/cog', cogRouter);
 app.use('/admin', adminRouter);
+app.use('/adminpage', adminPageRouter);
+app.use('/appinfo', appInfoRouter);
+app.use('/contact', contactRouter);
 app.use('/parkingIn', parkingInRouter);
 app.use('/parkingOut', parkingOutRouter);
 app.use('/timecheck', timeCheckRouter);

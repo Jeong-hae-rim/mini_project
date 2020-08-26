@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %>::관리자 페이지</title>
+  <link rel="shortcut icon" href="/images/apt_con.png" type="image/x-icon">
+  <link rel='stylesheet' href='/stylesheets/cog.css' />
+  <link rel='stylesheet' href='/stylesheets/main.css' />
+  <link rel='stylesheet' href='/stylesheets/queries.css' />
+  <link rel='stylesheet' href='/venders/css/font-awesome.css' />
+</head>
+<body>
+    <header>
+        <div class="logo-box">
+          <a href="/"><img src="/images/apt_logo.png" class="logo"></a>
+          <a href="/"><img src="/images/logo_long.png" class="logo_long"></a>
+        </div>
+    </header>
+
+    <section>
+        <div class="section-body">
+            <div>
+                <img src="/images/apt_main.png" class="apt-img">
+            </div>
+            <div class="user-sector">
+
+                <h3>유저 상태</h3>
+                <% if(users != null && users.length > 0){ %>
+                    <table class="user-table">
+                        <tr>
+                            <th>id</th>
+                            <th>이름</th>
+                            <th>핸드폰 번호</th>
+                            <th>아파트 호수</th>
+                            <th>등록 날짜</th>
+                            <th>관리자</th>
+                        </tr>
+                        <% for ( var i = 0; i < users.length; i++){ %>
+                            <tr>
+                                <td><%= users[i].id %></td>
+                                <td><%= users[i].name %></td>
+                                <td><%= users[i].phonenum %></td>
+                                <td><%= users[i].aptnum %></td>
+                                <td><%= users[i].adddate %></td>
+                                <% if (users[i].code == 1) { %>
+                                    <td>관리자</td>
+                                <% } else { %>
+                                    <td>입주인</td>
+                                <% } %>
+                            </tr>
+                            <% } %>
+                    </table>
+                <% }else{ %>
+                    <p>등록된 유저가 없습니다.</p>
+                <% } %>
+            </div>
+
+            <div class="user-sector">
+
+                <h3>차량 소유주 상태</h3>
+                <% if(have != null && have.length > 0){ %>
+                    <table class="user-table">
+                        <tr>
+                            <th>이름</th>
+                            <th>아파트 호수</th>
+                            <th>소유 차량</th>
+                        </tr>
+                        <% for ( var i = 0; i < have.length; i++){ %>
+                            <tr>
+                                <td><%= have[i].name %></td>
+                                <td><%= have[i].aptnum %></td>
+                                <td><%= have[i].carnum %></td>
+                            </tr>
+                        <% } %>
+                    </table>
+                <% }else{ %>
+                    <p>등록된 유저의 차량이 없습니다.</p>
+                <% } %>
+            </div>
+
+            <div class="user-sector">
+                <h3>입출차 상태</h3>
+                <% if(cars != null && cars.length > 0){ %>
+                    <table class="user-table">
+                        <tr>
+                            <th>id</th>
+                            <th>차 번호</th>
+                            <th>입차 시간</th>
+                            <th>출차 시간</th>
+                            <th>총 시간</th>
+                        </tr>
+                        <% for ( var i = 0; i < cars.length; i++){ %>
+                            <tr>
+                                <td><%= cars[i].id %></td>
+                                <td><%= cars[i].carnum %></td>
+                                <td><%= cars[i].parkstart %></td>
+                                <td><%= cars[i].parkfinish %></td>
+                                <td><%= cars[i].totaltime %></td>
+                            </tr>
+                        <% } %>
+                    </table>
+                <% }else{ %>
+                    <p>차량 내용이 없습니다.</p>
+                <% } %>
+            </div>
+
+            <div class="user-sector">
+                <h3>문의 상태</h3>
+                <% if(contacts != null && contacts.length > 0){ %>
+                    <table class="user-table">
+                        <tr>
+                            <th>id</th>
+                            <th>이름</th>
+                            <th>차 번호</th>
+                            <th>문의 내용</th>
+                        </tr>
+                        <% for ( var i = 0; i < contacts.length; i++){ %>
+                            <tr>
+                                <td><%= contacts[i].cid %></td>
+                                <td><%= contacts[i].name %></td>
+                                <td><%= contacts[i].carnum %></td>
+                                <td><%= contacts[i].contact %></td>
+                            </tr>
+                        <% } %>
+                    </table>
+                <% }else{ %>
+                    <p>문의 내용이 없습니다.</p>
+                <% } %>
+            </div>
+
+            <div class="user-sector">
+                <h3>주차비 상태</h3>
+                <% if(payments != null && payments.length > 0){ %>
+                    <table class="user-table">
+                        <tr>
+                            <th>id</th>
+                            <th>차 번호</th>
+                            <th>결제 수단</th>
+                            <th>총 금액</th>
+                            <th>결제일</th>
+                        </tr>
+                        <% for ( var i = 0; i < contacts.length; i++){ %>
+                            <tr>
+                                <td><%= payments[i].id %></td>
+                                <td><%= payments[i].carnum %></td>
+                                <td><%= payments[i].method %></td>
+                                <td><%= payments[i].totalprice %></td>
+                                <td><%= payments[i].regdate %></td>
+                            </tr>
+                        <% } %>
+                    </table>
+                <% }else{ %>
+                    <p>결제 내용이 없습니다.</p>
+                <% } %>
+            </div>
+
+            <div class="user-sector">
+                <h3>정기권 상태</h3>
+                <% if(tickets != null && tickets.length > 0){ %>
+                    <table class="user-table">
+                        <tr>
+                            <th>id</th>
+                            <th>차 번호</th>
+                            <th>결제 수단</th>
+                            <th>충전 금액</th>
+                            <th>결제일</th>
+                        </tr>
+                        <% for ( var i = 0; i < tickets.length; i++){ %>
+                            <tr>
+                                <td><%= tickets[i].id %></td>
+                                <td><%= tickets[i].carnum %></td>
+                                <td><%= tickets[i].method %></td>
+                                <td><%= tickets[i].point %></td>
+                                <td><%= tickets[i].regdate %></td>
+                            </tr>
+                        <% } %>
+                    </table>
+                <% }else{ %>
+                    <p>정기권 충전 내역이 없습니다.</p>
+                <% } %>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-body">
+          <p>2020 <i class="fa fa-heart"></i> made by haerim</p>
+        </div>
+    </footer>
+
+</body>
+</html>

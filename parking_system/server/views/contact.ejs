@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %>::관리자 문의</title>
+  <link rel="shortcut icon" href="/images/apt_con.png" type="image/x-icon">
+  <link rel='stylesheet' href='/stylesheets/cog.css' />
+  <link rel='stylesheet' href='/stylesheets/main.css' />
+  <link rel='stylesheet' href='/stylesheets/queries.css' />
+  <link rel='stylesheet' href='/venders/css/font-awesome.css' />
+</head>
+<body>
+
+  <header>
+    <div class="logo-box">
+      <a href="/"><img src="/images/apt_logo.png" class="logo"></a>
+      <a href="/"><img src="/images/logo_long.png" class="logo_long"></a>
+    </div>
+  </header>
+    
+  <section>
+      <div class="section-body">
+        <div>
+          <img src="/images/apt_main.png" class="apt-img">
+        </div>
+  
+        <div class="info-body">
+            <p><input type="text" class="contact-input" id="name" placeholder="성함"></p>
+            <p><input type="text" class="contact-input" id="car_number" placeholder="차 번호"></p>
+            <p><textarea class="contact-area" id="contact" placeholder="문의 사항"></textarea></p>
+            <p><button id="contacting" class="cog-btn">문의하기</button>
+              <button class="cog-btn" onclick="location.href='/cog'">돌아가기</button></p>
+        </div>
+      </div>
+  </section>
+  
+  <footer>
+    <div class="footer-body">
+      <p>2020 <i class="fa fa-heart"></i> made by haerim</p>
+    </div>
+  </footer>
+
+  <script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous" type="text/javascript"></script>
+
+  <script>
+      $(document).ready(function(){
+
+          $( "#contacting" ).click(function(e) {
+              e.preventDefault();
+
+              let data = {
+                name:  $('#name').val(),
+                car_number: $('#car_number').val(),
+                contact: $('#contact').val()
+                };
+              console.log("data"+data);
+              $.ajax({
+                  type: "POST",
+                  url: "/contact",
+                  data: data,
+                  success: function(response) {
+                      console.log("응답22 : "+JSON.stringify(response));
+                      alert('문의가 성공적으로 되었습니다.');
+                  },
+                  error: function(err) {
+                      console.log("error!");
+                  }
+              });
+          });
+      });
+  </script>
+</body>
+</html>

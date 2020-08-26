@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %>::앱 정보</title>
+    <link rel="shortcut icon" href="/images/apt_con.png" type="image/x-icon">
+    <link rel='stylesheet' href='/stylesheets/cog.css' />
+    <link rel='stylesheet' href='/stylesheets/main.css' />
+    <link rel='stylesheet' href='/stylesheets/queries.css' />
+    <link rel='stylesheet' href='/venders/css/font-awesome.css' />
+</head>
+<body>
+
+  <header>
+    <div class="logo-box">
+      <a href="/"><img src="/images/apt_logo.png" class="logo"></a>
+      <a href="/"><img src="/images/logo_long.png" class="logo_long"></a>
+    </div>
+  </header>
+    
+  <section>
+    <div class="section-body">
+      <div>
+        <img src="/images/apt_main.png" class="apt-img">
+      </div>
+
+      <div class="info-body">
+        <div class="notice">
+          <p>관리자 전용 페이지입니다.</p>
+          <p>로그인해주세요.</p>
+        </div>
+        <p><input type="text" id="adminId" class="info-input" placeholder="아이디"></p>
+        <p><input type="password" id="adminPw" class="info-input" placeholder="패스워드"></p>
+        <p><button id="checkMe" class="cog-btn info">로그인</button></p>
+      </div>
+    </div>
+  </section>
+  
+  <footer>
+    <div class="footer-body">
+      <p>2020 <i class="fa fa-heart"></i> made by haerim</p>
+    </div>
+  </footer>
+
+  <script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous" type="text/javascript"></script>
+  
+  <script>
+      $(document).ready(function(){
+
+          $( "#checkMe" ).click(function(e) {
+              e.preventDefault();
+
+              let data = {
+                id:  $('#adminId').val(),
+                pw: $('#adminPw').val(),
+                };
+              console.log("data"+data);
+              $.ajax({
+                  type: "POST",
+                  url: "/admin",
+                  data: data,
+                  success: function(response) {
+                      console.log(response);
+                      if(response === 'no'){
+                        alert('아이디나 혹은 비밀번호를 다시 입력해주세요.')
+                      } else {
+                        alert('환영합니다, '+$('#adminId').val()+'님');
+                        location.href = '/adminpage';
+                      }
+                  },
+                  error: function(err) {
+                      console.log("error!");
+                  }
+              });
+          });
+
+          $( "#checkInfo" ).click(function(e) {
+              e.preventDefault();
+
+              let data = {
+                name:  $('#name').val(),
+                house: $('#house').val(),
+              };
+              console.log("data"+data);
+              $.ajax({
+                  type: "POST",
+                  url: "/memberinfo",
+                  data: data,
+                  success: function(response) {
+                      console.log("success");
+                  },
+                  error: function(err) {
+                      console.log("error!");
+                  }
+              });
+          });
+      });
+  </script>
+</body>
+</html>
