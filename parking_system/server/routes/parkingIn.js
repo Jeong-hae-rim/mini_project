@@ -17,11 +17,14 @@ router.post('/', function(req, res, next) {
 
   parking.checkInCar(car_number).then(result => {
     putSuccess = result;
-    
-    if(putSuccess === 0) {
+    console.log(result);
+
+    if(putSuccess === 2) {
+      console.log('failed : '+result);
       res.send("failed");
     }
     else{
+      console.log('success : '+JSON.stringify(result));
       var status = {
         "status": 200,
         "message": '입차가 시작됩니다.'

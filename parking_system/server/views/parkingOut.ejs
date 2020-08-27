@@ -56,24 +56,37 @@
             $( "#checkOut" ).click(function(e) {
                 e.preventDefault();
 
-                let data = { car_number: $('#outNumber').val() };
-                console.log(data);
-                $.ajax({
-                    type: "POST",
-                    url: "/parkingout",
-                    data: data,
-                    success: function(response) {
-                        $('#out_result').text(response);
-                        var data = JSON.parse(response);
-                        if(data.status == '200'){
-                            window.alert("출차 처리 되었습니다. 정산해주세요.");
-                            window.location.replace("/");
+                if(!$('#outNumber').val()){
+                    $('#out_result').text('차량 번호를 입력해주세요.');
+                    window.alert("차량 번호를 입력해주세요.");
+                } else {
+                    let data = { car_number: $('#outNumber').val() };
+                    console.log(data);
+                    $.ajax({
+                        type: "POST",
+                        url: "/parkingout",
+                        data: data,
+                        success: function(response) {
+                            console.log("응답 "+response);
+                            if(response === 'success'){
+                                $('#out_result').text('출차 처리 되었습니다.');
+                                if(data.status == '200'){
+                                    window.alert("출차 처리 되었습니다. 정산해주세요.");
+                                    window.location.replace("/");
+                                }
+                            } else {
+                                $('#out_result').text('출차 처리 된 차량입니다.');
+                                window.alert("출차 처리 된 차량입니다.");
+                                window.location.replace("/");
+                            }
+                        },
+                        error: function(err) {
+                            console.log("error!");
                         }
-                    },
-                    error: function(err) {
-                        console.log("error!");
-                    }
-                });
+                    });
+
+                }
+
             });
         });
     </script>

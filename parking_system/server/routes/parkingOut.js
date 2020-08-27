@@ -15,16 +15,12 @@ router.post('/', function(req, res, next) {
 
   parkingOut.checkOutCar(car_number).then(result => { 
     getSuccess = result;
-    console.log(result);
-    if(getSuccess === 0) {
-      var status = {
-        "status": 200,
-        "message": '정산이 시작됩니다.'
-      }        
-      res.end(JSON.stringify(status));
-    }
-    else{
-      res.send('차량 번호를 입력해주세요.');
+    if(getSuccess) {
+      console.log(result);
+      res.send("not null "+result);
+    } else{
+      console.log(result);
+      res.send("success");
     }
   });
 });
