@@ -1,7 +1,9 @@
 # mini_project
-use language : nodejs, javascript, css3, html5
+### use language :  javascript, css3, html5
 
+### use server : node.js
 
+### use tool: VS code
 
 # 프로젝트 일정
 
@@ -153,4 +155,16 @@ use language : nodejs, javascript, css3, html5
    - 관리자 페이지 화면 구현 (완료)
    - 관리자 페이지 기능 구현 (완료)
 3. 내일 할 부분
-   - 주차비 변경^^...
+   - 주차비 변경
+
+
+
+## 08 27
+
+1. 오늘 확인 사항
+   - 관리자 페이지 버튼 추가하고 누를 때마다 밑에 테이블이 보이게 하는 형식으로 구성 > 스크롤 구현
+   - 관리자 페이지 한 테이블 당 5개까지만 보이게
+2. 오늘 할 부분
+   - 관리자 페이지 주차비 업데이트
+3. 내일 할 부분
+   - 일단 끝

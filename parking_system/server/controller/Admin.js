@@ -36,30 +36,35 @@ class Admin {
         let query4;
         let query5;
         let query6;
+        let query7;
         let query_result;
         let query_result2;
         let query_result3;
         let query_result4;
         let query_result5;
         let query_result6;
+        let query_result7;
 
         query = `SELECT * FROM users`;
         query_result = await db.getData(query);
 
-        query2 = `SELECT * FROM cars`;
+        query2 = `SELECT * FROM cars ORDER BY c_parkstart DESC`;
         query_result2 = await db.getData(query2);
 
         query3 = `SELECT * FROM contacts`;
         query_result3 = await db.getData(query3);
 
-        query4 = `SELECT * FROM payments`;
+        query4 = `SELECT * FROM payments ORDER BY p_regdate DESC`;
         query_result4 = await db.getData(query4);
 
-        query5 = `SELECT * FROM tickets`;
+        query5 = `SELECT * FROM tickets ORDER BY t_regdate DESC`;
         query_result5 = await db.getData(query5);
 
         query6 = `SELECT U.u_name AS name, U.u_aptnum AS aptnum, M.m_carnum AS carnum FROM users U, members M WHERE U.uid = M.uid`;
         query_result6 = await db.getData(query6);
+
+        query7 = `SELECT cost, updatedate FROM charge ORDER BY updatedate DESC LIMIT 1`;
+        query_result7 = await db.getData(query7);
 
         let users = {};
         let arr = [];
@@ -119,6 +124,18 @@ class Admin {
             arr4.push(tickets);
         }
 
+
+        let charges = {};
+        let arr5 = [];
+        for (var i=0; i<query_result7.length; i++){
+            charges = {
+                cost: query_result7[i].cost,
+                update: JSON.stringify(query_result7[i].updatedate).toString().slice(0, 20).replace(/\"|T/g, " ")
+            }
+
+            arr5.push(charges);
+        }
+
         console.log("arr "+ JSON.stringify(arr));
         console.log("arr "+ JSON.stringify(arr2));
         console.log("arr "+ JSON.stringify(arr3));
@@ -126,7 +143,8 @@ class Admin {
         
         if(query_result['affectedRows'] > 0 && query_result2['affectedRows'] > 0 
             && query_result3['affectedRows'] > 0 && query_result4['affectedRows'] > 0 
-            && query_result5['affectedRows'] > 0 && query_result6['affectedRows'] > 0) {
+            && query_result5['affectedRows'] > 0 && query_result6['affectedRows'] > 0
+            && query_result7['affectedRows'] > 0) {
             rns = 1;
         }
         else {
@@ -134,7 +152,25 @@ class Admin {
             if(!query){
                 return query_result = 0;
             } 
-            return [arr, arr2, query_result3, arr3, arr4, query_result6];
+            return [arr, arr2, query_result3, arr3, arr4, query_result6, arr5];
+        }
+        return rns;
+    }
+
+    async UpdateCost(cost){
+        const db = this.db;
+        let rns = 0;
+        let query;
+        let query_result;
+        query = `INSERT INTO charge (cost, updatedate) VALUES ('${cost}', now());`;
+        query_result = await db.putData(query);
+        
+        if(query_result['affectedRows'] > 0) {
+            rns = 1;
+        }
+        else {
+            console.log(query_result);
+            return query_result;
         }
         return rns;
     }

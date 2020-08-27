@@ -76,15 +76,71 @@ h3 {
     text-align: center;
 }
 
-.user-table {
-    margin : 0 auto;
-    width: 600px;
+.admin-sector{
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
 }
 
-.user-table th, .user-table tr, .user-table td{
+.admin-wrap{
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.admin-table {
+    margin : 0 auto;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.admin-table th, .admin-table tr, .admin-table td{
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
     text-align: center;
+}
 
+.admin-wrap{
+    width: 100%;
+    height: 100px;
+    margin: 0 auto;
+}
+
+.admin-list{
+    width: 100%;
+    height: 100%;
+    padding-inline-start: 10px;
+    text-align: center;
+}
+
+.admin-list li {
+    list-style-type: none;
+    display: inline-block;
+    margin-right: 5px;
+    margin-bottom: 20px;
+}
+
+.admin-btn {
+    width: 100px;
+    height: 30px;
+    font-size: 18px;
+    border: 2px solid #fff;
+    background-color: #fff;
+}
+
+.admin-btn:hover, .admin-btn:active {
+    border-bottom : 2px solid rgb(41, 128, 185);
+    -webkit-transition: border-bottom 0.3s ease-in-out;
+    transition: border-bottom 0.3s ease-in-out;
+}
+
+.charge-wrap{
+    text-align:center;
+}
+
+.cost-input{
+    height: 40px;
+    text-align: center;
 }
