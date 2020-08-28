@@ -19,10 +19,11 @@ class Admin {
         }
         else {
             console.log(query_result);
-            if(!query){
+            if(query_result[0]==null){
                 return query_result = 0;
-            } 
-            return query_result;
+            } else {
+                return query_result;
+            }
         }
         return rns;
     }

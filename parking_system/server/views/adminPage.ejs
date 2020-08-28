@@ -207,60 +207,31 @@
                     <p>정기권 충전 내역이 없습니다.</p>
                 <% } %>
             </div>
-        </div>
 
-        <div class="admin-sector">
-            <% if(tickets != null && tickets.length > 0){ %>
-                <div class="point-wrap">
-                    <h3>정기권 상태</h3>
-                    <table class="admin-table">
-                        <tr>
-                            <th>id</th>
-                            <th>차 번호</th>
-                            <th>결제 수단</th>
-                            <th>충전 금액</th>
-                            <th>결제일</th>
-                        </tr>
-                        <% for ( var i = 0; i < tickets.length; i++){ %>
+            <div class="admin-sector">
+                <% if(charge != null && charge.length > 0){ %>
+                    <div class="charge-wrap">
+                        <h3>주차비</h3>
+                        <table class="admin-table">
                             <tr>
-                                <td><%= tickets[i].id %></td>
-                                <td><%= tickets[i].carnum %></td>
-                                <td><%= tickets[i].method %></td>
-                                <td><%= tickets[i].point %></td>
-                                <td><%= tickets[i].regdate %></td>
+                                <th>현재 분 당 주차비</th>
+                                <th>변경 일자</th>
                             </tr>
-                        <% } %>
-                    </table>
-                </div>
-            <% }else{ %>
-                <p>정기권 충전 내역이 없습니다.</p>
-            <% } %>
+                            <% for ( var i = 0; i < charge.length; i++){ %>
+                                <tr>
+                                    <td><%= charge[i].cost %></td>
+                                    <td><%= charge[i].update %></td>
+                                </tr>
+                            <% } %>
+                        </table>
+                            <!-- <input type="text" class="placeholder="변경할 주차비"> -->
+                            <button id="update" class="cog-btn" style="margin-top:40px">주차비 변경하기</button>
+                    </div>
+                <% }else{ %>
+                    <p>내용이 없습니다.</p>
+                <% } %>
+            </div>
         </div>
-
-        <div class="admin-sector">
-            <% if(charge != null && charge.length > 0){ %>
-                <div class="charge-wrap">
-                    <h3>주차비</h3>
-                    <table class="admin-table">
-                        <tr>
-                            <th>현재 분 당 주차비</th>
-                            <th>변경 일자</th>
-                        </tr>
-                        <% for ( var i = 0; i < charge.length; i++){ %>
-                            <tr>
-                                <td><%= charge[i].cost %></td>
-                                <td><%= charge[i].update %></td>
-                            </tr>
-                        <% } %>
-                    </table>
-                        <!-- <input type="text" class="placeholder="변경할 주차비"> -->
-                        <button id="update" class="cog-btn" style="margin-top:40px">주차비 변경하기</button>
-                </div>
-            <% }else{ %>
-                <p>내용이 없습니다.</p>
-            <% } %>
-        </div>
-    </div>  
     </section>
 
     <footer>

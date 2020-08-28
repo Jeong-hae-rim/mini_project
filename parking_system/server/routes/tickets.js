@@ -21,14 +21,35 @@ router.post('/', function(req, res, next) {
 
     tickets.Tickets(carnum, method, userprice).then(result => {
         getSuccess = result;
-        console.log(result);
+        console.log("서버 응답 "+result);
         if(getSuccess === 0) {
         res.send('0');
+        }
+        else{
+        res.send('3');
+        }
+    });
+});
+
+router.post('/add', function(req, res, next) {
+    
+    let carnum = req.body.carnum;
+    let method = req.body.method;
+    let addprice = req.body.addprice;
+    let getSuccess = 0;
+    const tickets = new Tickets();
+    
+    console.log(carnum+", "+method+", "+addprice);
+
+    tickets.TicketsAdd(carnum, method, addprice).then(result => {
+        getSuccess = result;
+        if(getSuccess === 0) {
+        res.send('?');
         }
         else{
         res.send('???');
         }
     });
-});
+}); 
 
 module.exports = router;

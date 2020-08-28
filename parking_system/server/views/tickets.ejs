@@ -80,7 +80,7 @@
                     url: "/tickets",
                     data: data,
                     success: function(response) {
-                        if(response === '0'){
+                        if(response === '3'){
                             $('#out_result').text('이미 등록된 차량입니다.');
                             alert('이미 등록된 차량입니다.');
                         } else {
@@ -108,7 +108,7 @@
                 console.log(data);
                 $.ajax({
                     type: "POST",
-                    url: "/ticketsadd",
+                    url: "/tickets/add",
                     data: data,
                     success: function(response) {
                         $('#out_result').text('잔액 충전이 완료되었습니다.');

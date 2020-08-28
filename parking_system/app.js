@@ -1,23 +1,19 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var logger = require('morgan');
 
 var mainRouter = require('./server/routes/main');
 var cogRouter = require('./server/routes/Cog');
-var appInfoRouter = require('./server/routes/appInfo');
-var contactRouter = require('./server/routes/contact');
 var adminRouter = require('./server/routes/admin');
-var adminPageRouter = require('./server/routes/adminPage');
 var parkingInRouter = require('./server/routes/parkingIn');
 var parkingOutRouter = require('./server/routes/parkingOut');
 var timeCheckRouter = require('./server/routes/timeCheck');
 var payRouter = require('./server/routes/pay');
-var payFinishRouter = require('./server/routes/payfinish');
 var ticketsRouter = require('./server/routes/tickets');
-var ticketsAddRouter = require('./server/routes/ticketsAdd');
 var guestCheckRouter = require('./server/routes/guestCheck');
 var parkInfoRouter = require('./server/routes/parkInfo');
 
@@ -28,6 +24,13 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'server/views'));
 app.set('view engine', 'ejs');
+app.set('trust proxy', 1);
+
+app.use(session({
+    secret: '1234GERSETGE#@$!$W',
+    resave: false,
+    saveUninitialized: true,
+}));
 
 app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -39,16 +42,11 @@ app.use(cookieParser());
 app.use('/', mainRouter);
 app.use('/cog', cogRouter);
 app.use('/admin', adminRouter);
-app.use('/adminpage', adminPageRouter);
-app.use('/appinfo', appInfoRouter);
-app.use('/contact', contactRouter);
 app.use('/parkingIn', parkingInRouter);
 app.use('/parkingOut', parkingOutRouter);
 app.use('/timecheck', timeCheckRouter);
 app.use('/pay', payRouter);
-app.use('/payfinish', payFinishRouter);
 app.use('/tickets', ticketsRouter);
-app.use('/ticketsadd', ticketsAddRouter);
 app.use('/guestcheck', guestCheckRouter);
 app.use('/parkinfo', parkInfoRouter);
 

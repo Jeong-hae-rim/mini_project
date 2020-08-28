@@ -19,19 +19,24 @@ class Tickets {
         query_result1 = await db.getData(query1);
         console.log(query_result1);
 
-        if(query1 = []){
+        if(query_result1[0]==null){
             query2 = `INSERT INTO tickets(t_carnum, t_method, t_point, t_regdate) VALUES ('${carnum}', '${method}', '${userprice}', now() )`;
             query_result2 = await db.getData(query2);
         } else {
-            query_result2 = 0;
+            query_result2 = 3;
         }
 
         if(query_result1['affectedRows'] > 0 && query_result2['affectedRows'] > 0) {
             rns = 1;
         }
         else {
-            console.log(query_result1);
-            console.log(query_result2);
+            if(query_result1[0]==null){
+                console.log("결과1 "+query_result2);
+                return query_result2;
+            } else {
+                console.log("결과2 "+query_result2);
+                return query_result2 = 3;
+            }
         }
         return rns;
     }
