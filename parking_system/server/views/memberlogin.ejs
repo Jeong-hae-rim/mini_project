@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %>::정보 확인</title>
+    <link rel="shortcut icon" href="/images/apt_con.png" type="image/x-icon">
+    <link rel='stylesheet' href='/stylesheets/cog.css' />
+    <link rel='stylesheet' href='/stylesheets/main.css' />
+    <link rel='stylesheet' href='/stylesheets/queries.css' />
+    <link rel='stylesheet' href='/venders/css/font-awesome.css' />
+</head>
+<body>
+
+  <header>
+    <div class="logo-box">
+      <a href="/"><img src="/images/apt_logo.png" class="logo"></a>
+      <a href="/"><img src="/images/logo_long.png" class="logo_long"></a>
+    </div>
+  </header>
+    
+  <section>
+    <div class="section-body">
+      <div>
+        <img src="/images/apt_main.png" class="apt-img">
+      </div>
+
+      <div class="info-body">
+        <div class="notice">
+          <p>입주자 전용 페이지입니다.</p>
+          <p>성함과 동 호수를 입력해주세요.</p>
+        </div>
+        <form action="/member/login" method="POST">
+          <p><input type="text" name="memName" class="info-input" placeholder="성함"></p>
+          <p><input type="text" name="memApt" class="info-input" placeholder="동-호수"></p>
+          <p><input type="submit" class="cog-btn info" value="정보 확인"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+  
+  <footer>
+    <div class="footer-body">
+      <p>2020 <i class="fa fa-heart"></i> made by haerim</p>
+    </div>
+  </footer>
+
+</body>
+</html>

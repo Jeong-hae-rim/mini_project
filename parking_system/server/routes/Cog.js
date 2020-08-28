@@ -6,6 +6,17 @@ router.get('/', function(req, res){
     res.render('cog', {title: 'parking? parking!'});
 });
 
+router.get('/admin', function(req, res, next) {
+
+    res.render('login', {title: 'parking? parking!'});
+    
+});
+
+router.get('/member', function(req, res, next){
+    
+    res.render('memberlogin', {title: 'parking? parking!'});
+})
+
 router.get('/appinfo', function(req, res){
     res.render('appInfo', {title: 'parking? parking!'});
 });
@@ -36,10 +47,5 @@ router.post('/contact', function(req, res, next) {
     })
 })
 
-router.get('/admin', function(req, res, next) {
-
-    res.render('login', {title: 'parking? parking!'});
-    
-});
 
 module.exports = router;

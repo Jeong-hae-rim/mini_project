@@ -72,7 +72,6 @@
 /* admin 페이지 */
 
 h3 {
-    padding-top: 80px;
     text-align: center;
 }
 
@@ -92,11 +91,11 @@ h3 {
     font-weight: 700;
 }
 
-.admin-sector{
+.user-sector, .car-sector, .parking-sector, .contact-sector, 
+.payments-sector, .point-sector, .charge-sector {
     width: 100%;
     height: 100%;
-    margin: 0 auto;
-    text-align: center;
+    margin-bottom: 30px;
 }
 
 .admin-wrap{
@@ -168,8 +167,80 @@ h3 {
     margin-top: 100px;
     padding-bottom: 70px;
     text-align: center;
+    width: 100%;
+    height: 70%;
 }
 
 .caution-sector img {
     width: 30%;
+}
+
+/* 멤버 페이지 */
+
+.member-body{
+    background-color : rgb(219, 217, 217);
+    width: 100%;
+    height: 100%;
+}
+
+.mem-body{
+    width: 100%;
+    height: 100%;
+}
+
+.mem-wrap{
+    width: 100%;
+    height: 100%;
+}
+
+.mem {
+    width: 70%;
+    height: 100%;
+    margin-top: 20px;
+    padding : 10px;
+}
+
+.my-info{
+    width: 100%;
+    height: 100%;
+    padding-top: 100px;
+}
+
+.my-info td {
+    height: 50px;
+}
+
+.my-info table {
+    width: 310px;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.info-sub{
+    width: 100px;
+}
+
+.my-info input {
+    height: 30px;
+    width: 200px;
+}
+
+.my-car{
+    width: 100%;
+    height: 100%;
+    padding-top: 100px;
+    text-align: center;
+}
+
+.my-car input{
+    width : 250px;
+    height: 50px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h4 {
+    text-align: center;
 }

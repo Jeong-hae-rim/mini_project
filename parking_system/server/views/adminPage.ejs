@@ -29,7 +29,7 @@
                 <img src="/images/apt_main.png" class="apt-img" style="height: 90%;">
             </div>
 
-            <div class="admin-sector">
+            <div class="admin-sector" style="height: 40%;">
                 <div class="admin-wrap">
                     <ul class="admin-list">
                         <li><button id="user" class="admin-btn">user</button></li>
@@ -44,7 +44,7 @@
             </div>
 
             <!-- 유저 -->
-            <div class="admin-sector">
+            <div class="user-sector">
                 <% if(users != null && users.length > 0){ %>
                     <div class="user-wrap">
                         <h3>유저 상태</h3>
@@ -79,7 +79,7 @@
             </div>
 
             <!-- 차량 소유쥬 -->
-            <div class="admin-sector">
+            <div class="car-sector">
                 <% if(have != null && have.length > 0){ %>
                     <div class="car-wrap">
                         <h3>차량 소유주 상태</h3>
@@ -104,7 +104,7 @@
             </div>
 
             <!-- 입출차 -->
-            <div class="admin-sector">
+            <div class="parking-sector">
                 <% if(cars != null && cars.length > 0){ %>
                     <div class="parking-wrap">
                         <h3>입출차 상태</h3>
@@ -116,7 +116,7 @@
                                 <th>출차 시간</th>
                                 <th>총 시간</th>
                             </tr>
-                            <% for ( var i = 0; i < cars.length; i++){ %>
+                            <% for ( var i = 0; i < 5; i++){ %>
                                 <tr>
                                     <td><%= cars[i].id %></td>
                                     <td><%= cars[i].carnum %></td>
@@ -133,7 +133,7 @@
             </div>
 
             <!-- 문의 -->
-            <div class="admin-sector">
+            <div class="contact-sector">
                 <% if(contacts != null && contacts.length > 0){ %>
                     <div class="contact-wrap">
                         <h3>문의 상태</h3>
@@ -160,7 +160,7 @@
             </div>
 
             <!-- 주차비 -->
-            <div class="admin-sector">
+            <div class="payments-sector">
                 <% if(payments != null && payments.length > 0){ %>
                     <div class="payments-wrap">
                         <h3>주차비 상태</h3>
@@ -189,7 +189,7 @@
             </div>
 
             <!-- 정기권 -->
-            <div class="admin-sector">
+            <div class="point-sector">
                 <% if(tickets != null && tickets.length > 0){ %>
                     <div class="point-wrap">
                         <h3>정기권 상태</h3>
@@ -218,7 +218,7 @@
             </div>
 
             <!-- 주차비 변경 -->
-            <div class="admin-sector">
+            <div class="charge-sector">
                 <% if(charge != null && charge.length > 0){ %>
                     <div class="charge-wrap">
                         <h3>주차비</h3>
@@ -262,13 +262,13 @@
 
         $( document ).ready( function() {
             
-            layer = $('.user-wrap');
-            layer2 = $('.car-wrap');
-            layer3 = $('.parking-wrap');
-            layer4 = $('.contact-wrap');
-            layer5 = $('.payments-wrap');
-            layer6 = $('.point-wrap');
-            layer7 = $('.charge-wrap');
+            layer = $('.user-sector');
+            layer2 = $('.car-sector');
+            layer3 = $('.parking-sector');
+            layer4 = $('.contact-sector');
+            layer5 = $('.payments-sector');
+            layer6 = $('.point-sector');
+            layer7 = $('.charge-sector');
 
             layer.hide(); layer2.hide(); layer3.hide(); 
             layer4.hide(); layer5.hide(); layer6.hide(); layer7.hide();
@@ -293,7 +293,7 @@
 
             $("#contact").click(function(event) {
                 layer4.slideToggle(600);
-                $("body,html").animate({scrollTop: layer5.offset().top}, 500);
+                $("body,html").animate({scrollTop: layer4.offset().top}, 500);
                 return false;
             });
 

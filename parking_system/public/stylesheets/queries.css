@@ -14,17 +14,12 @@
         padding-top: 5px;
     }
 
-    .btn-list {
+    .btn-ul {
         display: none;
     }
 
-    .btn-list2 {
-        display: block;
-        text-align: center;
-    }
-
     .btn2{
-        width: 300px;
+        width: 200px;
         height: 200px;
         margin: 10px;
         border: none;
@@ -59,13 +54,13 @@
         height: 80px;
         float: right;
         margin-right: 30px;
-      }
+    }
       
     .cog{
-    width:100%;
-    margin-top:10px;
-    border: 2px solid #fff;
-    border-radius: 50%;
+        width:100%;
+        margin-top:10px;
+        border: 2px solid #fff;
+        border-radius: 50%;
     }
 
 
@@ -86,12 +81,42 @@
         display: none;
     }
 
+    /* 멤버 페이지 */
+
+    .side-pannel{
+        width: 30%;
+        height: 480px;
+        padding-top: 30px;
+        float: left;
+        background-color : #fff;
+        text-align: center;
+        margin-left: 20px;
+    }
+
+    .main-pannel{
+        width: 60%;
+        height: 480px;
+        padding-top: 30px;
+        float: right;
+        background-color : #fff;
+        margin-right: 20px;
+    }
+    
+    .mem-list {
+        list-style-type: none;
+        padding-inline-start: 0px;
+    }
+
     
 }
 
 @media only screen and (max-width: 700px){
-    .btn-list2{
+    .btn-list button{
         display: none;
+    }
+
+    .btn-ul {
+        display: block;
     }
 
     .logo_long{
@@ -102,4 +127,43 @@
         width: 100%;
         height: 100px;
     }
+
+    .side-pannel{
+        width: 90%;
+        height: 220px;
+        padding-top: 20px;
+        background-color : #fff;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .side-pannel img {
+        width: 15%;
+    }
+
+    .side-pannel ul {
+        list-style-type: none;
+        
+    }
+    
+    .side-pannel li {
+        float: left;
+    }
+
+    .mem {
+        width: 200px;
+        margin-top: 0px;
+    }
+
+    .main-pannel{
+        width: 90%;
+        height: 400px;
+        margin-top: 10px;
+        margin-bottom: 70px;
+        background-color : #fff;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
 }

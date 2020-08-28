@@ -27,7 +27,7 @@ class GuestCheck {
         else {
             console.log(query_result);
             console.log(query_result2);
-            if(query=[]){
+            if(query_result[0]=null){
                 console.log(query_result2);
                 return query_result2;
             }

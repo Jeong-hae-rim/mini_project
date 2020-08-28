@@ -5,6 +5,11 @@
     text-align: center;
 }
 
+.parkingin-body{
+    width: 100%;
+    height: 70%;
+}
+
 .parkingin-check{
     margin-top: 70px;
 }

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %>::입주자 페이지</title>
+    <link rel="shortcut icon" href="/images/apt_con.png" type="image/x-icon">
+    <link rel='stylesheet' href='/stylesheets/main.css' />
+    <link rel='stylesheet' href='/stylesheets/cog.css' />
+    <link rel='stylesheet' href='/stylesheets/queries.css' />
+    <link rel='stylesheet' href='/venders/css/font-awesome.css' />
+</head>
+<body class="member-body">
+    
+    <header>
+        <div class="logo-box">
+          <a href="/"><img src="/images/apt_logo.png" class="logo"></a>
+          <a href="/"><img src="/images/logo_long.png" class="logo_long"></a>
+        </div>
+    </header>
+
+    <section>
+        <div class="section-body">
+            <div>
+            <img src="/images/apt_main.png" class="apt-img">
+            </div>
+    
+            <div class="mem-body">
+                <div class="mem-wrap">
+                    <div class="side-pannel">
+                        <img src="/images/apt_icon.png" width="50%">
+                        <p><%= name %>님</p>
+                        <ul class="mem-list">
+                            <li><button id="user" class="admin-btn mem">내 정보</button></li>
+                            <li><button id="car" class="admin-btn mem">소유 차 정보</button></li>
+                        </ul>
+                    </div>
+                    <div class="main-pannel">
+                        <div class="my-info">
+                            <table>
+                                <tr>
+                                    <td class="info-sub">이름 : </td>
+                                    <td><input type="text" value="<%= name %>" readonly></td>
+                                </tr>
+                                <tr>
+                                    <td class="info-sub">전화번호 : </td>
+                                    <td><input type="text" value="<%= phonenum %>" readonly></td>
+                                </tr>
+                                <tr>
+                                    <td class="info-sub">거주지 : </td>
+                                    <td><input type="text" value="<%= aptnum %>" readonly></td>
+                                </tr>
+                                <tr>
+                                    <% if(adddate === 'null') { %>
+                                        <td class="info-sub">등록일 : </td>
+                                        <td><input type="text" value="등록되지 않음" readonly></td>
+                                    <% } else {%>
+                                        <td class="info-sub">등록일 : </td>
+                                        <td><input type="text" value="<%= adddate %>" readonly></td>
+                                    <% } %>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="my-car">
+                            <h4>소유 차량</h4>
+                            <% if(car != null && car.length > 0){ %>
+                                <% for ( var i = 0; i < car.length; i++){ %>
+                                <p><input type="text" value="<%= car[i] %>" readonly></p>
+                                <% } %>
+                            <% } else { %>
+                                <p>등록하신 차량이 없습니다.</p>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+      
+    <footer>
+    <div class="footer-body">
+        <p>2020 <i class="fa fa-heart"></i> made by haerim</p>
+    </div>
+    </footer>
+
+    <script
+    src="https://code.jquery.com/jquery-2.2.4.min.js"
+    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+    crossorigin="anonymous" type="text/javascript">
+    </script>
+
+
+    <script>
+
+
+        $( document ).ready( function() {
+            
+            layer = $('.my-info');
+            layer2 = $('.my-car');
+
+            layer.hide(); layer2.hide();
+
+            $("#user").click(function(event) {
+                layer.slideToggle(600);
+            });
+            
+            $("#car").click(function(event) {
+                layer2.slideToggle(600);
+            });
+        });
+
+    </script>
+</body>
+</html>

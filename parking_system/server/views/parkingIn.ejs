@@ -1,6 +1,9 @@
+<!DOCTYPE html>
 <html>
 <head>
-    <title><%= title %> :: 입차</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %> :: 출차</title>
     <link rel="shortcut icon" href="/images/apt_con.png" type="image/x-icon">
     <link rel='stylesheet' href='/stylesheets/main.css' />
     <link rel='stylesheet' href='/stylesheets/parking.css' />
@@ -13,7 +16,7 @@
         <div class="logo-box">
             <a href="/"><img src="/images/apt_logo.png" class="logo"></a>
             <a href="/"><img src="/images/logo_long.png" class="logo_long"></a>
-          </div>  
+          </div>
     </header>
 
     <section>
@@ -26,7 +29,7 @@
                     <input type="text" id="inNumber" class="parking-input" placeholder="입차할 차량 번호 입력">
                 </div>
                 <div class="parkingin-word">
-                    <label id="in_result">입차대기</label>
+                    <label id="in_result">입차 대기</label>
                     <p class="parking-word">시간은 입차 시 체크됩니다.</p>
                 </div>
                 <div class="parkingin-btn">
@@ -35,54 +38,54 @@
             </div>
         </div>
     </section>
-    
+
     <footer>
         <div class="footer-body">
           <p>2020 <i class="fa fa-heart"></i> made by haerim</p>
         </div>
     </footer>
-</body>
-</html>
 
-<script
+    <script
         src="https://code.jquery.com/jquery-2.2.4.min.js"
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
         crossorigin="anonymous" type="text/javascript"></script>
 
-<script>
-    $(document).ready(function(){
-
-        $( "#checkIn" ).click(function(e) {
-            e.preventDefault();
-
-            let data = { car_number: $('#inNumber').val() };
-            console.log(data);
-
-            $.ajax({
-                type: "POST",
-                url: "/parkingIn",
-                data: data,
-                success: function(response) {
-                    if(response==='failed'){
-                        console.log("응답 "+response);
-                        $('#in_result').text('입차된 차량입니다.');
-                        alert("입차된 차량입니다.");
-                        window.location.replace("/");
-                    }else {
-                        $('#in_result').text('입차처리 되었습니다.');
-                        var data = JSON.parse(response);
-                            if(data.status == '200'){
-                                window.alert("입차 처리 되었습니다.");
-                                window.location.replace("/");
-                            }
+    <script>
+        $(document).ready(function(){
+    
+            $( "#checkIn" ).click(function(e) {
+                e.preventDefault();
+    
+                let data = { car_number: $('#inNumber').val() };
+                console.log(data);
+    
+                $.ajax({
+                    type: "POST",
+                    url: "/parkingIn",
+                    data: data,
+                    success: function(response) {
+                        if(response==='failed'){
+                            console.log("응답 "+response);
+                            $('#in_result').text('입차된 차량입니다.');
+                            alert("입차된 차량입니다.");
+                            window.location.replace("/");
+                        }else {
+                            $('#in_result').text('입차처리 되었습니다.');
+                            var data = JSON.parse(response);
+                                if(data.status == '200'){
+                                    window.alert("입차 처리 되었습니다.");
+                                    window.location.replace("/");
+                                }
+                        }
+                    },
+                    error: function(err) {
+                        console.log("error!");
                     }
-                },
-                error: function(err) {
-                    console.log("error!");
-                }
+                });
             });
         });
-    });
-</script>
+    </script>
+        
 
-
+</body>
+</html>
