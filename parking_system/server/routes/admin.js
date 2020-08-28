@@ -17,22 +17,49 @@ router.post('/login', function(req, res, next) {
       if(result === 0){
         res.render('loginfalse', {title : 'parking? parking!'});
       } else {
-        console.log("결과2 "+result);
+        console.log("결과2 "+JSON.stringify(result[0].a_id));
+        req.session.adminId = JSON.stringify(result[0].a_id);
         res.redirect('/admin/secret');
       }
   })
 });
 
+router.get('/logout', function(req, res, next){
+  delete req.session.adminId;
+  req.session.save(function(){
+    res.redirect('/');
+  });
+});
+
+router.get('/test', function(req, res, next){
+  res.send(req.session);
+})
+
 router.get('/secret', function(req, res, next) {
   let getSuccess = 0;
   const ad = new Admin();
-
-  ad.SelectUser().then(result => {
-    getSuccess = result;
-    console.log(result);
-
-    res.render('adminPage', {title: 'parking? parking!', users: result[0], cars: result[1], contacts: result[2], payments: result[3], tickets: result[4], have: result[5], charge: result[6]});
-  });
+  if(req.session.adminId){
+    ad.SelectUser().then(result => {
+      getSuccess = result;
+      console.log(result);
+      
+      res.render(
+        'adminPage', 
+        { title: 'parking? parking!', 
+          admin: (req.session.adminId).replace(/\"|T/g, ""), 
+          users: result[0], 
+          cars: result[1], 
+          contacts: result[2],                     
+          payments: result[3], 
+          tickets: result[4], 
+          have: result[5],                     
+          charge: result[6]
+        }
+      );
+    });
+  }else{
+    res.render('guestPage', {title: 'parking? parking!'});
+  }
 });
 
 router.post('/secret', function(req, res, next) {

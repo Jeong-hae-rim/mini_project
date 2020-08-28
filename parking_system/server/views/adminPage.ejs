@@ -16,6 +16,11 @@
           <a href="/"><img src="/images/apt_logo.png" class="logo"></a>
           <a href="/"><img src="/images/logo_long.png" class="logo_long"></a>
         </div>
+
+        <div class="admin-login">
+            <%= admin %>님
+            <button id="logout" class="admin-logout">logout</button>
+        </div>
     </header>
 
     <section>
@@ -38,8 +43,8 @@
                 </div>
             </div>
 
+            <!-- 유저 -->
             <div class="admin-sector">
-
                 <% if(users != null && users.length > 0){ %>
                     <div class="user-wrap">
                         <h3>유저 상태</h3>
@@ -73,8 +78,8 @@
                 <% } %>
             </div>
 
+            <!-- 차량 소유쥬 -->
             <div class="admin-sector">
-
                 <% if(have != null && have.length > 0){ %>
                     <div class="car-wrap">
                         <h3>차량 소유주 상태</h3>
@@ -98,6 +103,7 @@
                 <% } %>
             </div>
 
+            <!-- 입출차 -->
             <div class="admin-sector">
                 <% if(cars != null && cars.length > 0){ %>
                     <div class="parking-wrap">
@@ -126,6 +132,7 @@
                 <% } %>
             </div>
 
+            <!-- 문의 -->
             <div class="admin-sector">
                 <% if(contacts != null && contacts.length > 0){ %>
                     <div class="contact-wrap">
@@ -152,6 +159,7 @@
                 <% } %>
             </div>
 
+            <!-- 주차비 -->
             <div class="admin-sector">
                 <% if(payments != null && payments.length > 0){ %>
                     <div class="payments-wrap">
@@ -180,6 +188,7 @@
                 <% } %>
             </div>
 
+            <!-- 정기권 -->
             <div class="admin-sector">
                 <% if(tickets != null && tickets.length > 0){ %>
                     <div class="point-wrap">
@@ -208,6 +217,7 @@
                 <% } %>
             </div>
 
+            <!-- 주차비 변경 -->
             <div class="admin-sector">
                 <% if(charge != null && charge.length > 0){ %>
                     <div class="charge-wrap">
@@ -248,6 +258,8 @@
 
 
     <script>
+
+
         $( document ).ready( function() {
             
             layer = $('.user-wrap');
@@ -306,6 +318,11 @@
 
 
         $(document).ready(function(){
+
+            $("#logout").click(function(e){
+                e.preventDefault();
+                location.href = '/admin/logout';
+            })
 
             $( "#update" ).click(function(e) {
                 e.preventDefault();

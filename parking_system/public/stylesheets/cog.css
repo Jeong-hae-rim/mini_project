@@ -76,10 +76,27 @@ h3 {
     text-align: center;
 }
 
+.admin-login{
+    float: right;
+    margin-right: 30px;
+    margin-top: 15px;
+}
+
+.admin-logout{
+    width: 80px;
+    height: 20px;
+    margin-left: 20px;
+    border: none;
+    border-radius: 20px;
+    color: rgb(41, 128, 185);
+    font-weight: 700;
+}
+
 .admin-sector{
     width: 100%;
     height: 100%;
     margin: 0 auto;
+    text-align: center;
 }
 
 .admin-wrap{
@@ -143,4 +160,16 @@ h3 {
 .cost-input{
     height: 40px;
     text-align: center;
+}
+
+/* 접근 제한 페이지 */
+
+.caution-sector {
+    margin-top: 100px;
+    padding-bottom: 70px;
+    text-align: center;
+}
+
+.caution-sector img {
+    width: 30%;
 }
