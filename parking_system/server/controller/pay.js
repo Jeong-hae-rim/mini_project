@@ -62,22 +62,26 @@ class Pay {
 
         if(userPrice) {
             const db = this.db;
-            let rns = 0;
             let query;
+            let query2;
             let query_result;
+            let query_result2;
             let intime = new Date();
             intime = intime.toISOString().slice(0, 19).replace('T', ' ');
 
-            query = `INSERT INTO payments (p_carnum, p_method, p_totalprice, p_regdate) VALUES ('${carnum}', '${method}', '${userPrice}', '${intime}')`;
-            query_result = await db.getData(query);
-
-            if(query_result['affectedRows'] > 0) {
-                rns = 1;
+            userPrice = parseInt(userPrice);
+            
+            if(method != 'point'){
+                query = `INSERT INTO payments (p_carnum, p_method, p_totalprice, p_regdate) VALUES ('${carnum}', '${method}', '${userPrice}', '${intime}')`;
+                query_result = await db.getData(query);
+                console.log('포인트아님')
+                return query_result;
+            } else {
+                query2 = `UPDATE tickets SET t_point = (t_point-'${userPrice}') where t_carnum = '${carnum}'`; 
+                query_result2 = await db.putData(query2);
+                console.log('포인트임')
+                return query_result2;
             }
-            else {
-                console.log(query_result);
-            }
-            return rns;
         }
     }
 }
