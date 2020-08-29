@@ -72,7 +72,7 @@ class Tickets {
             rns = 1;
         }
         else {
-            if (query_result1[0] == null){
+            if (query_result1[0] == null){ // 차 넘버가 없는 차량 : 2
                 console.log('티켓 1' + query_result1);
                 return query_result1 = 2;
             } else if(query_result1[0] != 0  && addprice != 0 && addprice > 0){

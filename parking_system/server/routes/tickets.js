@@ -49,11 +49,11 @@ router.post('/add', function(req, res, next) {
         getSuccess = result;
         console.log(result);
         if(result === 2){
-            console.log('있는 차량');
-            res.send('있음');
-        } else if (result === 3) {
-            console.log('없는 차량');
+            console.log('등록 안 된 차량');
             res.send('없음');
+        } else if (result === 3) {
+            console.log('등록된 차량');
+            res.send('있음');
         } else {
             console.log('돈이 0원');
             res.send('0원');
