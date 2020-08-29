@@ -59,6 +59,8 @@ class Pay {
     }
 
     async payMoney(carnum, method, userPrice) {
+        
+        userPrice = parseInt(userPrice);
 
         if(userPrice) {
             const db = this.db;
@@ -69,15 +71,13 @@ class Pay {
             let intime = new Date();
             intime = intime.toISOString().slice(0, 19).replace('T', ' ');
 
-            userPrice = parseInt(userPrice);
-            
             if(method != 'point'){
                 query = `INSERT INTO payments (p_carnum, p_method, p_totalprice, p_regdate) VALUES ('${carnum}', '${method}', '${userPrice}', '${intime}')`;
                 query_result = await db.getData(query);
                 console.log('포인트아님')
                 return query_result;
             } else {
-                query2 = `UPDATE tickets SET t_point = (t_point-'${userPrice}') where t_carnum = '${carnum}'`; 
+                query2 = `UPDATE tickets SET t_point = t_point-'${userPrice}' where t_carnum = '${carnum}'`; 
                 query_result2 = await db.putData(query2);
                 console.log('포인트임')
                 return query_result2;

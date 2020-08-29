@@ -17,10 +17,6 @@
             <a href="/"><img src="/images/logo_long.png" class="logo_long"></a>
         </div>
   
-        <div class="login-box">
-            <a href="/"><img src="/images/cog.png" class="cog"></a>
-        </div>
-  
     </header>
 
     <section>
@@ -76,21 +72,24 @@
                 console.log('라디오 버튼 체크 : '+radioCheck);
                 console.log(data);
 
-                if(data.carnum==null && data.addprice==null && data.method==null){
-                    alert('빈 항목이 있습니다. 확인해주세요.');
+                if(!data.carnum && !data.addprice && !data.method && data.addprice==0){
+                    alert('항목을 확인해주세요.');
                 } else {
                     $.ajax({
                         type: "POST",
                         url: "/tickets",
                         data: data,
                         success: function(response) {
-                            if(response === '3'){
-                                $('#out_result').text('이미 등록된 차량입니다.');
-                                alert('이미 등록된 차량입니다.');
+                            if(response === '없음'){
+                                $('#out_result').text('신규 등록이 되었습니다.');
+                                alert('신규 등록이 되었습니다. 감사합니다.');
+                                location.href = '/';
+                            } else if(response === '0원') {
+                                $('#out_result').text('0원 이하는 충전할 수 없습니다.');
+                                alert('0원 이하는 충전할 수 없습니다.');
                             } else {
-                                $('#out_result').text('신규 충전이 완료되었습니다.');
-                                alert('신규 충전이 완료되었습니다.');
-                                window.location.replace("/");
+                                $('#out_result').text('등록된 차량입니다.');
+                                alert('등록된 차량입니다.');
                             }
                         },
                         error: function(err) {
@@ -110,18 +109,26 @@
                 };
                 console.log('라디오 버튼 체크 : '+radioCheck);
                 console.log(data);
-                
-                if (data.carnum==null && data.addprice==null && data.method==null){
-                    alert('빈 항목이 있습니다. 확인해주세요.');
+
+                if (!data.carnum && !data.addprice && !data.method){
+                    alert('항목을 확인해주세요.');
                 } else {
                     $.ajax({
                     type: "POST",
                     url: "/tickets/add",
                     data: data,
                     success: function(response) {
-                        $('#out_result').text('잔액 충전이 완료되었습니다.');
-                        alert('잔액 충전이 완료되었습니다.');
-                        window.location.replace("/");
+                        if(response === '없음'){
+                            $('#out_result').text('등록되지 않은 차량입니다.');
+                            alert('등록되지 않은 차량입니다.');
+                        } else if(response === '0원') {
+                            $('#out_result').text('0원 이하는 충전할 수 없습니다.');
+                            alert('0원 이하는 충전할 수 없습니다.');
+                        } else {
+                            $('#out_result').text('잔액이 충전되었습니다.');
+                            alert('잔액이 충전되었습니다 감사합니다..');
+                            location.href = '/';
+                        }
                     },
                     error: function(err) {
                         console.log("error!");

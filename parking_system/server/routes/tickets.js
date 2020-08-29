@@ -21,12 +21,16 @@ router.post('/', function(req, res, next) {
 
     tickets.Tickets(carnum, method, userprice).then(result => {
         getSuccess = result;
-        console.log("서버 응답 "+result);
-        if(getSuccess === 0) {
-        res.send('0');
-        }
-        else{
-        res.send('3');
+        console.log("서버 응답 "+JSON.stringify(result));
+        if(result === 2){
+            console.log('있는 차량');
+            res.send('있음');
+        } else if (result === 3) {
+            console.log('없는 차량');
+            res.send('없음');
+        } else {
+            console.log('돈이 0원');
+            res.send('0원');
         }
     });
 });
@@ -43,11 +47,16 @@ router.post('/add', function(req, res, next) {
 
     tickets.TicketsAdd(carnum, method, addprice).then(result => {
         getSuccess = result;
-        if(getSuccess === 0) {
-        res.send('?');
-        }
-        else{
-        res.send('???');
+        console.log(result);
+        if(result === 2){
+            console.log('있는 차량');
+            res.send('있음');
+        } else if (result === 3) {
+            console.log('없는 차량');
+            res.send('없음');
+        } else {
+            console.log('돈이 0원');
+            res.send('0원');
         }
     });
 }); 

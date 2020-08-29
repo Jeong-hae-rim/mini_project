@@ -69,11 +69,9 @@
                         success: function(response) {
                             console.log("응답 "+response);
                             if(response === 'success'){
-                                if(data.status == '200'){
-                                    $('#out_result').text('출차 처리 되었습니다.');
-                                    window.alert("출차 처리 되었습니다. 정산해주세요.");
-                                    window.location.replace("/");
-                                }
+                                $('#out_result').text('출차 처리 되었습니다.');
+                                window.alert("출차 처리 되었습니다. 정산해주세요.");
+                                window.location.replace("/");
                             } else {
                                 $('#out_result').text('출차 처리 된 차량입니다.');
                                 window.alert("출차 처리 된 차량입니다.");

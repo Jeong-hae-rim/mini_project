@@ -72,6 +72,9 @@ app.use(function(err, req, res, next) {
 
 module.exports = app;
 
-app.listen(3000, function(){
-  console.log('Connected');
-})
+var port = 3000;
+var hostname = '192.168.1.109';
+
+app.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});
